@@ -1,9 +1,0 @@
-# MinecraftParty - Plugin Originally created by instancelabs, Modified and updated by chuky025
-
-titles:
-  countdown:
-    title: '&a* &l%count% &a*'
-    subtitle: '&a✪ &l%minigame% &a✪'
-  after_countdown:
-    title: '&a* &lGO! &a*'
-    subtitle: '&a✪ &l%minigame% &a✪'

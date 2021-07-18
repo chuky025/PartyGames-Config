@@ -1,0 +1,15 @@
+name: MinecraftParty
+main: whirss.minecraftparty.Main
+version: 1.6
+author: Whirss, InstanceLabs
+depend: [Vault]
+commands:
+   mp:
+      description: Main command
+      usage: /mp [action]
+   mgp:
+      description: Main command
+      usage: /mp [action]
+   minecraftparty:
+      description: Main command
+      usage: /minecraftparty [action]
