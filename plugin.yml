@@ -4,12 +4,7 @@ version: 1.6
 author: Whirss, InstanceLabs
 depend: [Vault]
 commands:
-   mp:
-      description: Main command
-      usage: /mp [action]
-   mgp:
-      description: Main command
-      usage: /mp [action]
    minecraftparty:
+      aliases: [mp, mcparty, mcp]
       description: Main command
       usage: /minecraftparty [action]

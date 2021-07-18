@@ -259,10 +259,8 @@ public class Main extends JavaPlugin implements Listener {
 		economy = getConfig().getBoolean("config.use_economy");
 		item_rewards = getConfig().getBoolean("config.use_item_rewards");
 		
-		try{
-			Metrics metrics = new Metrics(this);
-			metrics.start();
-		} catch (IOException e) { }
+		int pluginId = 9703;
+        Metrics metrics = new Metrics(this, pluginId);
 
 		/*if(getConfig().getBoolean("config.auto_updating")){
 			Updater updater = new Updater(this, 71596, this.getFile(), Updater.UpdateType.DEFAULT, false);
@@ -351,6 +349,15 @@ public class Main extends JavaPlugin implements Listener {
 							}, 5L);
 						}
 					}
+				
+				}else if (args[0].equalsIgnoreCase("adminhelp")) {
+			           if (p.hasPermission("minecraftparty.setup")) {
+			             p.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD + "Minecraft" + ChatColor.LIGHT_PURPLE.toString() + ChatColor.BOLD +"Party " + ChatColor.GRAY + "- " + ChatColor.WHITE+ "Admin Help");
+			             p.sendMessage(ChatColor.GREEN + "/mp setlobby ");
+			             p.sendMessage(ChatColor.GREEN + "/mp setup " );
+			             p.sendMessage(ChatColor.GREEN + "/mp enable/disable [game] ");
+			             p.sendMessage(ChatColor.GREEN + "/mp setcomponent [game] [component] ");
+			           }
 				}else if(args[0].equalsIgnoreCase("setlobby")){
 					if(sender.hasPermission("minecraftparty.setlobby")){
 						getConfig().set("lobby.world", p.getLocation().getWorld().getName());
@@ -489,22 +496,22 @@ public class Main extends JavaPlugin implements Listener {
 						minigames.get(currentmg).join(p);
 					}
 				}else{
-					p.sendMessage("§c§lMinecraft§d§lParty §7- §fHelp");
-			        p.sendMessage("§a/mp join §fJoin a match");
-			        p.sendMessage("§a/mp leave §fLeave match");
-			        p.sendMessage("§a/mp list §fSee the list of minigames");
-			        p.sendMessage("§a/mp stats [player] §fSee a player statistics");
-			        p.sendMessage("§a/mp leaderboards [wins|credits] §fSee the Leaderboards");
-			        p.sendMessage("§a/mp adminhelp §fHelp for admins");
+					p.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + "Minecraft" + ChatColor.LIGHT_PURPLE.toString() + ChatColor.BOLD + "Party " + ChatColor.GRAY + "- " + ChatColor.WHITE + "Help");
+			        p.sendMessage(ChatColor.GREEN + "/mp join " + ChatColor.WHITE + "Join a match");
+			        p.sendMessage(ChatColor.GREEN + "/mp leave " + ChatColor.WHITE + "Leave match");
+			        p.sendMessage(ChatColor.GREEN + "/mp list " + ChatColor.WHITE + "See the list of minigames");
+			        p.sendMessage(ChatColor.GREEN + "/mp stats [player] " + ChatColor.WHITE + "See a player statistics");
+			        p.sendMessage(ChatColor.GREEN + "/mp leaderboards [wins|credits] " + ChatColor.WHITE + "See the Leaderboards");
+			        p.sendMessage(ChatColor.GREEN + "/mp adminhelp " + ChatColor.WHITE + "Help for admins");
 				}
 			}else{
-				p.sendMessage("§c§lMinecraft§d§lParty §7- §fHelp");
-		        p.sendMessage("§a/mp join §fJoin a match");
-		        p.sendMessage("§a/mp leave §fLeave match");
-		        p.sendMessage("§a/mp list §fSee the list of minigames");
-		        p.sendMessage("§a/mp stats [player] §fSee a player statistics");
-		        p.sendMessage("§a/mp leaderboards [wins|credits] §fSee the Leaderboards");
-		        p.sendMessage("§a/mp adminhelp §fHelp for admins");
+				p.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + "Minecraft" + ChatColor.LIGHT_PURPLE.toString() + ChatColor.BOLD + "Party " + ChatColor.GRAY + "- " + ChatColor.WHITE + "Help");
+		        p.sendMessage(ChatColor.GREEN + "/mp join " + ChatColor.WHITE + "Join a match");
+		        p.sendMessage(ChatColor.GREEN + "/mp leave " + ChatColor.WHITE + "Leave match");
+		        p.sendMessage(ChatColor.GREEN + "/mp list " + ChatColor.WHITE + "See the list of minigames");
+		        p.sendMessage(ChatColor.GREEN + "/mp stats [player] " + ChatColor.WHITE + "See a player statistics");
+		        p.sendMessage(ChatColor.GREEN + "/mp leaderboards [wins|credits] " + ChatColor.WHITE + "See the Leaderboards");
+		        p.sendMessage(ChatColor.GREEN + "/mp adminhelp " + ChatColor.WHITE + "Help for admins");
 			}
 			return true;
 		}
