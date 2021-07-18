@@ -2,18 +2,18 @@ package whirss.minecraftparty.nms;
 
 import java.lang.reflect.Field;
 
-import net.minecraft.server.v1_7_R4.NBTTagCompound;
-import net.minecraft.server.v1_7_R4.NBTTagList;
-import net.minecraft.server.v1_7_R4.PacketPlayOutWorldParticles;
+import net.minecraft.server.v1_12_R1.NBTTagCompound;
+import net.minecraft.server.v1_12_R1.NBTTagList;
+import net.minecraft.server.v1_12_R1.PacketPlayOutWorldParticles;
 
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public enum NMSFunctions1710 {
+public enum NMSFunctions1121 {
 	/**
 	 * Each ParticleEffect has the packet name, and the environment in which it will be succesfully displayed.
 	 */
@@ -42,7 +42,7 @@ public enum NMSFunctions1710 {
 	 * @param packetName
 	 * @param environment
 	 */
-	NMSFunctions1710(String packetName, Environment environment) {
+	NMSFunctions1121(String packetName, Environment environment) {
 		this.packetName = packetName;
 		this.environment = environment;
 	}
@@ -182,7 +182,7 @@ public enum NMSFunctions1710 {
 	}
 
 	public static ItemStack addGlow(ItemStack item) {
-		net.minecraft.server.v1_7_R4.ItemStack nmsStack = CraftItemStack.asNMSCopy(item);
+		net.minecraft.server.v1_12_R1.ItemStack nmsStack = CraftItemStack.asNMSCopy(item);
 		NBTTagCompound tag = null;
 		if (!nmsStack.hasTag()) {
 			tag = new NBTTagCompound();

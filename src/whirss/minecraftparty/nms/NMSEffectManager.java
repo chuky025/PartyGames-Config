@@ -19,24 +19,18 @@ public class NMSEffectManager {
 	public static void createParticles(Location l, int i, int j){
 		try{
 			String version = Bukkit.getServer().getClass().getPackage().getName().substring(Bukkit.getServer().getClass().getPackage().getName().lastIndexOf(".") + 1);
-			if (version.contains("1_6_R3")) {
-				NMSFunctions164 explosion = NMSFunctions164.HUGE_EXPLOSION;
+			if (version.contains("1_8_R2")) {
+				NMSFunctions182 explosion = NMSFunctions182.HUGE_EXPLOSION;
 				explosion.animateAtLocation(l, i, j);
-			}else if(version.contains("1_7_R1")){
-				NMSFunctions172 explosion = NMSFunctions172.HUGE_EXPLOSION;
+			}else if(version.contains("1_8_R3")){
+				NMSFunctions183 explosion = NMSFunctions183.HUGE_EXPLOSION;
 				explosion.animateAtLocation(l, i, j);
-			}else if(version.contains("1_7_R2")){
-				NMSFunctions175 explosion = NMSFunctions175.HUGE_EXPLOSION;
-				explosion.animateAtLocation(l, i, j);
-			}else if(version.contains("1_7_R3")){
-				NMSFunctions178 explosion = NMSFunctions178.HUGE_EXPLOSION;
-				explosion.animateAtLocation(l, i, j);
-			}else if(version.contains("1_7_R4")){
-				NMSFunctions1710 explosion = NMSFunctions1710.HUGE_EXPLOSION;
+			}else if(version.contains("1_12_R1")){
+				NMSFunctions1121 explosion = NMSFunctions1121.HUGE_EXPLOSION;
 				explosion.animateAtLocation(l, i, j);
 			}else{
 				//fallback
-				NMSFunctions172 explosion = NMSFunctions172.HUGE_EXPLOSION;
+				NMSFunctions182 explosion = NMSFunctions182.HUGE_EXPLOSION;
 				explosion.animateAtLocation(l, i, j);
 			}
 		}catch(Exception e){
@@ -47,19 +41,15 @@ public class NMSEffectManager {
 	public static ItemStack fakeGlow(ItemStack item){
 		try{
 			String version = Bukkit.getServer().getClass().getPackage().getName().substring(Bukkit.getServer().getClass().getPackage().getName().lastIndexOf(".") + 1);
-			if (version.contains("1_6_R3")) {
-				return NMSFunctions164.addGlow(item);
-			}else if(version.contains("1_7_R1")){
-				return NMSFunctions172.addGlow(item);
-			}else if(version.contains("1_7_R2")){
-				return NMSFunctions175.addGlow(item);
-			}else if(version.contains("1_7_R3")){
-				return NMSFunctions178.addGlow(item);
-			}else if(version.contains("1_7_R4")){
-				return NMSFunctions1710.addGlow(item);
+			if (version.contains("1_8_R2")) {
+				return NMSFunctions182.addGlow(item);
+			}else if(version.contains("1_8_R3")){
+				return NMSFunctions183.addGlow(item);
+			}else if(version.contains("1_12_R2")){
+				return NMSFunctions1121.addGlow(item);
 			}else{
 				//fallback
-				return NMSFunctions172.addGlow(item);
+				return NMSFunctions182.addGlow(item);
 			}
 		}catch(Exception e){
 			System.out.println("Your Bukkit build appears to be unsupported! Please post a comment with the following string on the project page: " + Bukkit.getVersion());
@@ -74,24 +64,18 @@ public class NMSEffectManager {
 	public static void createMinefieldEffect(Location t){
 		try{
 			String version = Bukkit.getServer().getClass().getPackage().getName().substring(Bukkit.getServer().getClass().getPackage().getName().lastIndexOf(".") + 1);
-			if (version.contains("1_6_R3")) {
-				NMSFunctions164 effect = NMSFunctions164.HUGE_EXPLOSION;
+			if (version.contains("1_8_R2")) {
+				NMSFunctions182 effect = NMSFunctions182.HUGE_EXPLOSION;
 				effect.animateAtLocation(t, 1, 1);
-			}else if(version.contains("1_7_R1")){
-				NMSFunctions172 effect = NMSFunctions172.HUGE_EXPLOSION;
+			}else if(version.contains("1_8_R3")){
+				NMSFunctions183 effect = NMSFunctions183.HUGE_EXPLOSION;
 				effect.animateAtLocation(t, 1, 1);
-			}else if(version.contains("1_7_R2")){
-				NMSFunctions175 effect = NMSFunctions175.HUGE_EXPLOSION;
-				effect.animateAtLocation(t, 1, 1);
-			}else if(version.contains("1_7_R3")){
-				NMSFunctions178 effect = NMSFunctions178.HUGE_EXPLOSION;
-				effect.animateAtLocation(t, 1, 1);
-			}else if(version.contains("1_7_R4")){
-				NMSFunctions1710 effect = NMSFunctions1710.HUGE_EXPLOSION;
+			}else if(version.contains("1_12_R1")){
+				NMSFunctions1121 effect = NMSFunctions1121.HUGE_EXPLOSION;
 				effect.animateAtLocation(t, 1, 1);
 			}else{
 				//fallback
-				NMSFunctions172 effect = NMSFunctions172.HUGE_EXPLOSION;
+				NMSFunctions182 effect = NMSFunctions182.HUGE_EXPLOSION;
 				effect.animateAtLocation(t, 1, 1);
 			}
 		}catch(Exception e){
