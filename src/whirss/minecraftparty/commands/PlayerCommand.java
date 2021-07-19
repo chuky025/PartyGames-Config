@@ -2,15 +2,11 @@ package whirss.minecraftparty.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
-
 import whirss.minecraftparty.Main;
-import whirss.minecraftparty.Minigame;
 import whirss.minecraftparty.Shop;
 
 public class PlayerCommand implements CommandExecutor {
@@ -18,10 +14,9 @@ public class PlayerCommand implements CommandExecutor {
 	private Main main;
 
 	public PlayerCommand(Main main) {
-		main.main = main;
+		this.main = main;
 	}
 
-	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 			if (!(sender instanceof Player)) {
 				sender.sendMessage("You must be a player to run this command.");
@@ -55,7 +50,7 @@ public class PlayerCommand implements CommandExecutor {
 				}else if(args[0].equalsIgnoreCase("leave")){
 					if(main.players.contains(p.getName())){
 						p.teleport(main.getLobby());
-						Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin) this, new Runnable(){
+						Bukkit.getScheduler().scheduleSyncDelayedTask(main, new Runnable(){
 							public void run(){
 								p.teleport(main.getLobby());
 							}
@@ -63,7 +58,7 @@ public class PlayerCommand implements CommandExecutor {
 						main.updateScoreboardOUTGAME(p.getName());
 						p.getInventory().clear();
 						p.updateInventory();
-						Bukkit.getScheduler().runTaskLater((Plugin) this, new Runnable(){
+						Bukkit.getScheduler().runTaskLater(main, new Runnable(){
 							public void run(){
 								p.getInventory().setContents(main.pinv.get(p.getName()));
 								p.updateInventory();
@@ -75,7 +70,7 @@ public class PlayerCommand implements CommandExecutor {
 						main.players.remove(p.getName());
 						p.sendMessage(ChatColor.RED + main.getConfig().getString("strings.you_left"));
 						if(main.players.size() < main.min_players){
-							Bukkit.getScheduler().runTaskLater((Plugin) this, new Runnable(){
+							Bukkit.getScheduler().runTaskLater(main, new Runnable(){
 								public void run(){
 									main.stopFull(p);
 								}
@@ -112,7 +107,7 @@ public class PlayerCommand implements CommandExecutor {
 						}	
 					}
 				}else if(args[0].equalsIgnoreCase("shop")){
-					Shop.openShop(this, p.getName());
+					Shop.openShop(main, p.getName());
 				}else if(args[0].equalsIgnoreCase("skip")){
 					if(!sender.hasPermission("minecraftparty.skip")){
 						return true;
@@ -127,19 +122,12 @@ public class PlayerCommand implements CommandExecutor {
 						main.minigames.get(main.currentmg).join(p);
 					}
 				}else{
-					p.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + "Minecraft" + ChatColor.LIGHT_PURPLE.toString() + ChatColor.BOLD + "Party " + ChatColor.GRAY + "- " + ChatColor.WHITE + "Help");
-			        p.sendMessage(ChatColor.GREEN + "/mp join " + ChatColor.WHITE + "Join a match");
-			        p.sendMessage(ChatColor.GREEN + "/mp leave " + ChatColor.WHITE + "Leave match");
-			        p.sendMessage(ChatColor.GREEN + "/mp list " + ChatColor.WHITE + "See the list of minigames");
-			        p.sendMessage(ChatColor.GREEN + "/mp stats [player] " + ChatColor.WHITE + "See a player statistics");
-			        p.sendMessage(ChatColor.GREEN + "/mp leaderboards [wins|credits] " + ChatColor.WHITE + "See the Leaderboards");
-			        p.sendMessage(ChatColor.GREEN + "/mp adminhelp " + ChatColor.WHITE + "Help for admins");
+					p.sendMessage(ChatColor.RED + "Unknown command");
 				}
 			}else{
 				p.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + "Minecraft" + ChatColor.LIGHT_PURPLE.toString() + ChatColor.BOLD + "Party " + ChatColor.GRAY + "- " + ChatColor.WHITE + "Help");
 		        p.sendMessage(ChatColor.GREEN + "/mp join " + ChatColor.WHITE + "Join a match");
 		        p.sendMessage(ChatColor.GREEN + "/mp leave " + ChatColor.WHITE + "Leave match");
-		        p.sendMessage(ChatColor.GREEN + "/mp list " + ChatColor.WHITE + "See the list of minigames");
 		        p.sendMessage(ChatColor.GREEN + "/mp stats [player] " + ChatColor.WHITE + "See a player statistics");
 		        p.sendMessage(ChatColor.GREEN + "/mp leaderboards [wins|credits] " + ChatColor.WHITE + "See the Leaderboards");
 		        p.sendMessage(ChatColor.GREEN + "/mp adminhelp " + ChatColor.WHITE + "Help for admins");

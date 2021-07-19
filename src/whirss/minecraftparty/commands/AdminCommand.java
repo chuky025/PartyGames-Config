@@ -7,8 +7,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
-
 import whirss.minecraftparty.Main;
 import whirss.minecraftparty.Minigame;
 
@@ -20,6 +18,7 @@ public class AdminCommand implements CommandExecutor {
 		this.main = main;
 	}
 
+	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){    	
 			if (!(sender instanceof Player)) {
 				sender.sendMessage("You must be a player to run this command.");
@@ -31,7 +30,7 @@ public class AdminCommand implements CommandExecutor {
 				if(args[0].equalsIgnoreCase("setup")){
 					// setup all arenas and spawns and lobbies and spectatorlobbies and what not
 					if(p.hasPermission("minecraftparty.setup")){
-						Bukkit.getServer().getScheduler().runTask((Plugin) this, new Runnable(){
+						Bukkit.getServer().getScheduler().runTask(main, new Runnable(){
 							public void run(){
 								main.setupAll(p.getLocation());
 							}
@@ -42,7 +41,7 @@ public class AdminCommand implements CommandExecutor {
 						final Location l = main.getComponentForMinigame("ColorMatch", "spawn");
 						if(l != null){
 							l.add(0.5, -2, 0.5);
-							Bukkit.getScheduler().runTaskLater((Plugin) this, new Runnable(){
+							Bukkit.getScheduler().runTaskLater(main, new Runnable(){
 								public void run(){
 									p.setAllowFlight(true);
 									p.setFlying(true);

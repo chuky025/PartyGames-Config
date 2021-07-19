@@ -10,6 +10,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import whirss.minecraftparty.commands.AdminCommand;
+import whirss.minecraftparty.commands.PlayerCommand;
 import whirss.minecraftparty.nms.NMSEffectManager;
 
 public class Shop {
@@ -76,6 +77,7 @@ public class Shop {
 		}
 		m.saveConfig();
 	}
+
 
 	public static void openShop(final Main m, String p) {
 		IconMenu iconm = new IconMenu("Shop - Credits: " + Integer.toString(m.getPlayerStats(p, "credits")), 18, new IconMenu.OptionClickEventHandler() {
