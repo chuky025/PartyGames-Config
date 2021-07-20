@@ -9,10 +9,12 @@ public class OnSignChange implements Listener {
 	
 	@EventHandler
 	public void onSignChange(SignChangeEvent event) {
-		if(event.getLine(0).toLowerCase().contains("MinecraftParty") || event.getLine(1).toLowerCase().contains("MinecraftParty")){
+		if(event.getLine(0).toLowerCase().contains("[MinecraftParty]") || event.getLine(1).toLowerCase().contains("[MinecraftParty]")){
 			if(event.getPlayer().hasPermission("minecraftparty.sign")){
 				event.setLine(0, "");
-				event.setLine(1, ChatColor.BOLD + "" + ChatColor.DARK_PURPLE + "[PARTY]");
+				event.setLine(1, ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + "Minecraft" + ChatColor.LIGHT_PURPLE.toString() + ChatColor.BOLD + "Party " + ChatColor.GRAY + "- " + ChatColor.WHITE + "Help");
+				event.setLine(2, ChatColor.BLACK + "Join");
+				event.setLine(3, "");
 			}
 		}
 	}

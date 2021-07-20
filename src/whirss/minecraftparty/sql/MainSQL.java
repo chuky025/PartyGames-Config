@@ -24,17 +24,17 @@ public class MainSQL {
     	c = MySQL.open();
 		
 		try {
-			ResultSet res3 = c.createStatement().executeQuery("SELECT * FROM mgparty WHERE player='" + p_ + "'");
+			ResultSet res3 = c.createStatement().executeQuery("SELECT * FROM mcparty WHERE player='" + p_ + "'");
 			if(!res3.isBeforeFirst()){
 				// there's no such user
-				c.createStatement().executeUpdate("INSERT INTO mgparty VALUES('0', '" + p_ + "', '" + Integer.toString(reward) + "', '1')");
+				c.createStatement().executeUpdate("INSERT INTO mcparty VALUES('0', '" + p_ + "', '" + Integer.toString(reward) + "', '1')");
 				return;
 			}
 			res3.next();
 			int credits = res3.getInt("credits") + reward;
 			int wins = res3.getInt("wins") + 1;
 			
-			c.createStatement().executeUpdate("UPDATE mgparty SET credits='" + Integer.toString(credits) + "', wins='" + Integer.toString(wins) + "' WHERE player='" + p_ + "'");
+			c.createStatement().executeUpdate("UPDATE mcparty SET credits='" + Integer.toString(credits) + "', wins='" + Integer.toString(wins) + "' WHERE player='" + p_ + "'");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -51,7 +51,7 @@ public class MainSQL {
     	c = MySQL.open();
 		
 		try {
-			ResultSet res3 = c.createStatement().executeQuery("SELECT * FROM mgparty WHERE player='" + p_ + "'");
+			ResultSet res3 = c.createStatement().executeQuery("SELECT * FROM mcparty WHERE player='" + p_ + "'");
 
 			/*if(res3.next()){
 				int credits = res3.getInt("credits");
@@ -78,7 +78,7 @@ public class MainSQL {
     	c = MySQL.open();
 		
 		try {
-			ResultSet res3 = c.createStatement().executeQuery("SELECT * FROM mgparty WHERE player='" + p_ + "'");
+			ResultSet res3 = c.createStatement().executeQuery("SELECT * FROM mcparty WHERE player='" + p_ + "'");
 
 			res3.next();
 			int wins = res3.getInt("wins");
@@ -98,17 +98,17 @@ public class MainSQL {
     	c = MySQL.open();
 		
 		try {
-			ResultSet res3 = c.createStatement().executeQuery("SELECT * FROM mgparty WHERE player='" + p_ + "'");
+			ResultSet res3 = c.createStatement().executeQuery("SELECT * FROM mcparty WHERE player='" + p_ + "'");
 			if(!res3.isBeforeFirst()){
 				// there's no such user
-				//c.createStatement().executeUpdate("INSERT INTO mgparty VALUES('0', '" + p_ + "', '" + Integer.toString(amount) + "', '1')");
+				//c.createStatement().executeUpdate("INSERT INTO mcparty VALUES('0', '" + p_ + "', '" + Integer.toString(amount) + "', '1')");
 				return;
 			}
 			res3.next();
 			int credits = res3.getInt("credits") - amount;
 			int wins = res3.getInt("wins") + 1;
 			
-			c.createStatement().executeUpdate("UPDATE mgparty SET credits='" + Integer.toString(credits) + "', wins='" + Integer.toString(wins) + "' WHERE player='" + p_ + "'");
+			c.createStatement().executeUpdate("UPDATE mcparty SET credits='" + Integer.toString(credits) + "', wins='" + Integer.toString(wins) + "' WHERE player='" + p_ + "'");
 
 		} catch (SQLException e) {
 			e.printStackTrace();

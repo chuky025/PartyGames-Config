@@ -411,7 +411,7 @@ public class Main extends JavaPlugin implements Listener {
 	public int c_ = 0; 
 	public boolean ingame_started = false;
 	public boolean started = false;
-	BukkitTask t = null;
+	private int t;
 	public int currentmg = 0;
 	BukkitTask currentid = null;
 	public void secondsTick(int disabledMinigamesC){
@@ -421,7 +421,7 @@ public class Main extends JavaPlugin implements Listener {
 		}
 		
 		// update scoreboard
-		updateScoreboard(seconds - c);
+		//updateScoreboard(seconds - c); The scoreboard produces lag, I will soon make a new system.
 
 		// stop the whole party after some rounds
 		if(c_ > (minigames.size() - disabledMinigamesC) * seconds - 3){
@@ -431,7 +431,7 @@ public class Main extends JavaPlugin implements Listener {
 					startNew();
 				}
 			}, 30 * 20); // 30 secs
-			t.cancel();
+			Bukkit.getScheduler().cancelTask(t);
 			started = false;
 			ingame_started = false;
 
@@ -472,11 +472,7 @@ public class Main extends JavaPlugin implements Listener {
 			currentid = null;
 
 			// reset all:
-			Bukkit.getScheduler().runTaskLater(this, new Runnable(){
-				public void run(){
-					resetAll(false);
-				}
-			}, 20L);
+			resetAll(false);
 			
 			c = 0;
 			c_ = 0;
@@ -649,7 +645,7 @@ public class Main extends JavaPlugin implements Listener {
 				
 				// start main timer
 				//t = Bukkit.getServer().getScheduler().runTaskTimerAsynchronously(this, new Runnable(){
-				t = Bukkit.getServer().getScheduler().runTaskTimer(this, new Runnable(){
+				t = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable(){
 					public void run(){
 						secondsTick(disabledMinigamesCount);
 					}
@@ -924,11 +920,7 @@ public class Main extends JavaPlugin implements Listener {
 
 		currentmg = -1;
 
-		Bukkit.getScheduler().runTask(this, new Runnable(){
-			public void run(){
-				resetAll(false);
-			}
-		});
+		resetAll(false);
 
 	}
 
@@ -959,11 +951,7 @@ public class Main extends JavaPlugin implements Listener {
 		players_doublejumped.clear();
 		currentmg = 0;
 
-		Bukkit.getScheduler().runTaskLater(this, new Runnable(){
-			public void run(){
-				resetAll(true);
-			}
-		}, 20L);
+		resetAll(true);
 	}
 	
 	public void stopFull(Player p_){

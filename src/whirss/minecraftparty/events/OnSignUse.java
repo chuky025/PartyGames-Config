@@ -34,7 +34,7 @@ public class OnSignUse implements Listener {
 				if (event.getClickedBlock().getType() == Material.SIGN_POST || event.getClickedBlock().getType() == Material.WALL_SIGN)
 				{
 					final Sign s = (Sign) event.getClickedBlock().getState();
-					if (s.getLine(1).equalsIgnoreCase(ChatColor.BOLD + "" + ChatColor.DARK_PURPLE + "[PARTY]")){
+					if (s.getLine(1).equalsIgnoreCase(ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + "Minecraft" + ChatColor.LIGHT_PURPLE.toString() + ChatColor.BOLD + "Party " + ChatColor.GRAY + "- " + ChatColor.WHITE + "Help")){
 						if(main.players.contains(event.getPlayer().getName())){
 							event.getPlayer().sendMessage(ChatColor.GOLD + "Use /mp leave to leave!");
 						}else{
