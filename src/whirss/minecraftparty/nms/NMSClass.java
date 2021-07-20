@@ -4,10 +4,10 @@ import org.bukkit.Bukkit;
 
 public class NMSClass {
 
-	public static Class getClazz(String t){
+	public static Class<?> getClazz(String t){
 		 String version = "net.minecraft.server." + Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
 
-		 Class c = null;
+		 Class<?> c = null;
 		 try {
 		     c = Class.forName(version + t);
 		 }catch(Exception e) {

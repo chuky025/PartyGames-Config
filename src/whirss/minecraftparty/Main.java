@@ -292,22 +292,22 @@ public class Main extends JavaPlugin implements Listener {
 	
 	public void RegisterEvents() {
 		PluginManager pm = getServer().getPluginManager();
-		pm.registerEvents(new OnBlockBreak(main), this);
-		pm.registerEvents(new OnBlockPlace(main), this);
-		pm.registerEvents(new OnDrop(main), this);
-		pm.registerEvents(new OnEntityDamage(main), this);
-		pm.registerEvents(new OnFlightAttempt(main), this);
-		pm.registerEvents(new OnHunger(main), this);
-		pm.registerEvents(new OnInventoryClick(main), this);
-		pm.registerEvents(new OnMove(main), this);
-		pm.registerEvents(new OnPlayerCommand(main), this);
-		pm.registerEvents(new OnPlayerLeave(main), this);
-		pm.registerEvents(new OnPlayerJoin(main), this);
-		pm.registerEvents(new OnPlayerPortalEnter(main), this);
-		pm.registerEvents(new OnPlayerShearSheep(main), this);
-		pm.registerEvents(new OnPlayerTeleport(main), this);
-		pm.registerEvents(new OnProjectileLand(main), this);
-		pm.registerEvents(new OnSignUse(main), this);
+		pm.registerEvents(new OnBlockBreak(this), this);
+		pm.registerEvents(new OnBlockPlace(this), this);
+		pm.registerEvents(new OnDrop(this), this);
+		pm.registerEvents(new OnEntityDamage(this), this);
+		pm.registerEvents(new OnFlightAttempt(this), this);
+		pm.registerEvents(new OnHunger(this), this);
+		pm.registerEvents(new OnInventoryClick(this), this);
+		pm.registerEvents(new OnMove(this), this);
+		pm.registerEvents(new OnPlayerCommand(this), this);
+		pm.registerEvents(new OnPlayerLeave(this), this);
+		pm.registerEvents(new OnPlayerJoin(this), this);
+		pm.registerEvents(new OnPlayerPortalEnter(this), this);
+		pm.registerEvents(new OnPlayerShearSheep(this), this);
+		pm.registerEvents(new OnPlayerTeleport(this), this);
+		pm.registerEvents(new OnProjectileLand(this), this);
+		pm.registerEvents(new OnSignUse(this), this);
 		pm.registerEvents(new OnSignChange(), this);
 		
 	}

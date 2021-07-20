@@ -44,7 +44,7 @@ public class NMSEffectManager {
 				explosion.animateAtLocation(l, i, j);
 			}else{
 				//fallback
-				NMSFunctions182 explosion = NMSFunctions182.HUGE_EXPLOSION;
+				NMSFunctions1121 explosion = NMSFunctions1121.HUGE_EXPLOSION;
 				explosion.animateAtLocation(l, i, j);
 			}
 		}catch(Exception e){
@@ -73,7 +73,7 @@ public class NMSEffectManager {
 				return NMSFunctions1121.addGlow(item);
 			}else{
 				//fallback
-				return NMSFunctions182.addGlow(item);
+				return NMSFunctions1121.addGlow(item);
 			}
 		}catch(Exception e){
 			System.out.println("Your Bukkit build appears to be unsupported! Please post a comment with the following string on the project page: " + Bukkit.getVersion());
@@ -114,7 +114,7 @@ public class NMSEffectManager {
 				effect.animateAtLocation(t, 1, 1);
 			}else{
 				//fallback
-				NMSFunctions182 effect = NMSFunctions182.HUGE_EXPLOSION;
+				NMSFunctions1121 effect = NMSFunctions1121.HUGE_EXPLOSION;
 				effect.animateAtLocation(t, 1, 1);
 			}
 		}catch(Exception e){

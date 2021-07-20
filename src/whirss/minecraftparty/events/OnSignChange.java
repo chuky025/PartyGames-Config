@@ -5,8 +5,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.SignChangeEvent;
 
-import whirss.minecraftparty.Main;
-
 public class OnSignChange implements Listener {
 	
 	@EventHandler
