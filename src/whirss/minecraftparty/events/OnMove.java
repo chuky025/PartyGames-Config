@@ -60,7 +60,12 @@ public class OnMove implements Listener {
 								World w = event.getPlayer().getWorld();
 								Location under = new Location(w, event.getPlayer().getLocation().getBlockX(), event.getPlayer().getLocation().getBlockY() - 1, event.getPlayer().getLocation().getBlockZ());
 								if(w.getBlockAt(under).getType() == Material.LAPIS_BLOCK){
-									w.getBlockAt(under).setType(Material.AIR);
+									
+									Bukkit.getScheduler().scheduleSyncDelayedTask(main, new Runnable(){
+										public void run(){
+											w.getBlockAt(under).setType(Material.AIR);
+										}
+									}, 10);
 								}
 							}
 							if(current.name.equalsIgnoreCase("SmokeMonster")){

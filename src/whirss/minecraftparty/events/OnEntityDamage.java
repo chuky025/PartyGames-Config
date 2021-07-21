@@ -3,9 +3,6 @@ package whirss.minecraftparty.events;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Chicken;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -38,45 +35,6 @@ public class OnEntityDamage implements Listener {
 							if(event.getCause() == DamageCause.FALL){
 								event.setCancelled(true);
 							}
-							p.setHealth(20D);
-						}else{
-							event.setCancelled(true);
-						}
-					}else if(main.minigames.get(main.currentmg).name.equalsIgnoreCase("chickentag")){
-						// current minigame is chickentag, enable all damage again
-						if(main.ingame_started){
-							// enable damage only when cooldown finished
-							if(event.getCause() == DamageCause.FALL){
-								event.setCancelled(true);
-							}
-							// TODO pass the chicken
-							if(main.hasChicken.containsKey(p.getName())){
-								if(main.hasChicken.get(p.getName())){
-									// if the player already has the chicken, don't allow passing to him
-									return;
-								}	
-							}
-							if(event instanceof EntityDamageByEntityEvent){
-								EntityDamageByEntityEvent e = (EntityDamageByEntityEvent) event;
-								if(e.getDamager() instanceof Player){
-									Player p2 = (Player) e.getDamager();
-									if(main.hasChicken.containsKey(p2.getName())){
-										main.hasChicken.put(p2.getName(), false);
-										Entity t = p2.getPassenger();
-										p2.eject();
-										t.remove();
-									}
-									NMSEffectManager.createBloodEffect(main, p.getLocation().add(0, 0.5, 0));
-									p.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + p2.getName() + " passed his Chicken to you! Try to get rid of it!");
-								}
-							}
-							main.hasChicken.put(p.getName(), true);
-							final Chicken c = (Chicken) p.getWorld().spawnEntity(p.getLocation(), EntityType.CHICKEN);
-							Bukkit.getScheduler().runTaskLater(main, new Runnable(){
-								public void run(){
-									p.setPassenger(c);
-								}
-							}, 2L);
 							p.setHealth(20D);
 						}else{
 							event.setCancelled(true);

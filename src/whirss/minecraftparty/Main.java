@@ -50,13 +50,12 @@ import whirss.minecraftparty.events.OnPlayerTeleport;
 import whirss.minecraftparty.events.OnProjectileLand;
 import whirss.minecraftparty.events.OnSignChange;
 import whirss.minecraftparty.events.OnSignUse;
-import whirss.minecraftparty.minigames.ChickenTag;
 import whirss.minecraftparty.minigames.ColorMatch;
 import whirss.minecraftparty.minigames.DeadEnd;
-import whirss.minecraftparty.minigames.DisIntegration;
 import whirss.minecraftparty.minigames.JumpnRun;
 import whirss.minecraftparty.minigames.LastArcherStanding;
 import whirss.minecraftparty.minigames.MineField;
+import whirss.minecraftparty.minigames.RedAlert;
 import whirss.minecraftparty.minigames.SheepFreenzy;
 import whirss.minecraftparty.minigames.SlapFight;
 import whirss.minecraftparty.minigames.SmokeMonster;
@@ -95,8 +94,6 @@ public class Main extends JavaPlugin implements Listener {
 	public ArrayList<String> players_outgame = new ArrayList<String>();
 	public ArrayList<String> players_left = new ArrayList<String>();
 	public HashMap<String, ItemStack[]> pinv = new HashMap<String, ItemStack[]>();
-	public static HashMap<String, Boolean> hasChicken = new HashMap<String, Boolean>();
-
 	public int min_players = 1;
 	public boolean running = false;
 
@@ -144,7 +141,7 @@ public class Main extends JavaPlugin implements Listener {
 					DeadEnd de = new DeadEnd(m, m.getComponentForMinigame("DeadEnd", "spawn"), m.getLobby(), m.getComponentForMinigame("DeadEnd", "spectatorlobby"));
 					minigames.add(de);
 					getServer().getPluginManager().registerEvents(de, m);
-					DisIntegration di = new DisIntegration(m, m.getComponentForMinigame("DisIntegration", "spawn"), m.getLobby(), m.getComponentForMinigame("DisIntegration", "spectatorlobby"));
+					RedAlert di = new RedAlert(m, m.getComponentForMinigame("RedAlert", "spawn"), m.getLobby(), m.getComponentForMinigame("RedAlert", "spectatorlobby"));
 					minigames.add(di);
 					getServer().getPluginManager().registerEvents(di, m);
 					LastArcherStanding las = new LastArcherStanding(m, m.getComponentForMinigame("LastArcherStanding", "spawn"), m.getLobby(), m.getComponentForMinigame("LastArcherStanding", "spectatorlobby"));
@@ -159,9 +156,6 @@ public class Main extends JavaPlugin implements Listener {
 					SlapFight slf = new SlapFight(m, m.getComponentForMinigame("SlapFight", "spawn"), m.getLobby(), m.getComponentForMinigame("SlapFight", "spectatorlobby"));
 					minigames.add(slf);
 					getServer().getPluginManager().registerEvents(slf, m);
-					ChickenTag ct = new ChickenTag(m, m.getComponentForMinigame("ChickenTag", "spawn"), m.getLobby(), m.getComponentForMinigame("ChickenTag", "spectatorlobby"));
-					minigames.add(ct);
-					getServer().getPluginManager().registerEvents(ct, m);
 				}
 			}
 		}, 20);
@@ -194,7 +188,7 @@ public class Main extends JavaPlugin implements Listener {
 		
 		getConfig().addDefault("strings.description.colormatch", "Jump to the color corresponding to the wool color in your inventory!");
 		getConfig().addDefault("strings.description.deadend", "Don't fall while the blocks are disappearing behind you!");
-		getConfig().addDefault("strings.description.disintegration", "Don't fall while the floor is disappearing!");
+		getConfig().addDefault("strings.description.redalert", "Don't fall while the floor is disappearing!");
 		getConfig().addDefault("strings.description.jumpnrun", "Jump to the finish!");
 		getConfig().addDefault("strings.description.lastarcherstanding", "Shoot the others with the bow!");
 		getConfig().addDefault("strings.description.minefield", "Run to the finish without touching the mines!");
@@ -202,7 +196,6 @@ public class Main extends JavaPlugin implements Listener {
 		getConfig().addDefault("strings.description.smokemonster", "Avoid the smoke monster!");
 		getConfig().addDefault("strings.description.spleef", "Destroy the floor under your opponents to make them fall and lose!");
 		getConfig().addDefault("strings.description.slapfight", "Slap the other players to fall! You can use Double Jump in case you fall, too.");
-		getConfig().addDefault("strings.description.chickentag", "Pass the chicken to others or you'll lose!");
 
 		getConfig().addDefault("strings.your_place", "You are <place> place.");
 
@@ -1013,12 +1006,11 @@ public class Main extends JavaPlugin implements Listener {
 		MineField.setup(new Location(start.getWorld(), x, y, z + 64 * 2 + 20 * 2), this, "MineField");
 		JumpnRun.setup(new Location(start.getWorld(), x, y, z + 64 * 3 + 20 * 3), this, "JumpnRun");
 		DeadEnd.setup(new Location(start.getWorld(), x + 64 + 20, y, z), this, "DeadEnd");
-		DisIntegration.setup(new Location(start.getWorld(), x + 64 * 2 + 20 * 2, y, z), this, "DisIntegration");
+		RedAlert.setup(new Location(start.getWorld(), x + 64 * 2 + 20 * 2, y, z), this, "RedAlert");
 		LastArcherStanding.setup(new Location(start.getWorld(), x + 64 * 3 + 20 * 3, y, z), this, "LastArcherStanding");
 		SheepFreenzy.setup(new Location(start.getWorld(), x + 64 + 20, y, z + 64 + 20), this, "SheepFreenzy");
 		SmokeMonster.setup(new Location(start.getWorld(), x + 64 * 2 + 20 * 2, y, z + 64 + 20), this, "SmokeMonster");
 		SlapFight.setup(new Location(start.getWorld(), x + 64 * 3 + 20 * 3, y, z + 64 + 20), this, "SlapFight");
-		ChickenTag.setup(new Location(start.getWorld(), x + 64 + 20, y, z + 64 * 2 + 20 * 2), this, "ChickenTag");
 
 		
 		/*
@@ -1027,7 +1019,7 @@ public class Main extends JavaPlugin implements Listener {
 		 * new Location(start.getWorld(), x, y, z + 64 * 2 + 20 * 2) [MINEFIELD]
 		 * new Location(start.getWorld(), x, y, z + 64 * 3 + 20 * 3) [JUMPNRUN]
 		 * new Location(start.getWorld(), x + 64 + 20, y, z) [DEADEND]
-		 * new Location(start.getWorld(), x + 64 * 2 + 20 * 2, y, z) [DISINTEGRATION]
+		 * new Location(start.getWorld(), x + 64 * 2 + 20 * 2, y, z) [REDALERT]
 		 * new Location(start.getWorld(), x + 64 * 3 + 20 * 3, y, z) [LASTARCHERSTANDING]
 		 * 
 		 * would create the following pattern:
@@ -1048,12 +1040,11 @@ public class Main extends JavaPlugin implements Listener {
 		minigames.add(new MineField(this, this.getComponentForMinigame("MineField", "spawn"), this.getComponentForMinigame("MineField", "lobby"), this.getComponentForMinigame("MineField", "spectatorlobby"), m.getComponentForMinigame("MineField", "finishline")));
 		minigames.add(new JumpnRun(this, this.getComponentForMinigame("JumpnRun", "spawn"), this.getComponentForMinigame("JumpnRun", "lobby"), this.getComponentForMinigame("JumpnRun", "spectatorlobby"), m.getComponentForMinigame("JumpnRun", "finishline")));
 		minigames.add(new DeadEnd(this, this.getComponentForMinigame("DeadEnd", "spawn"), this.getComponentForMinigame("DeadEnd", "lobby"), this.getComponentForMinigame("DeadEnd", "spectatorlobby")));
-		minigames.add(new DisIntegration(this, this.getComponentForMinigame("DisIntegration", "spawn"), this.getComponentForMinigame("DisIntegration", "lobby"), this.getComponentForMinigame("DisIntegration", "spectatorlobby")));
+		minigames.add(new RedAlert(this, this.getComponentForMinigame("RedAlert", "spawn"), this.getComponentForMinigame("RedAlert", "lobby"), this.getComponentForMinigame("RedAlert", "spectatorlobby")));
 		minigames.add(new LastArcherStanding(this, this.getComponentForMinigame("LastArcherStanding", "spawn"), this.getComponentForMinigame("LastArcherStanding", "lobby"), this.getComponentForMinigame("LastArcherStanding", "spectatorlobby")));
 		minigames.add(new SheepFreenzy(this, this.getComponentForMinigame("SheepFreenzy", "spawn"), this.getComponentForMinigame("SheepFreenzy", "lobby"), this.getComponentForMinigame("SheepFreenzy", "spectatorlobby")));
 		minigames.add(new SmokeMonster(this, this.getComponentForMinigame("SmokeMonster", "spawn"), this.getComponentForMinigame("SmokeMonster", "lobby"), this.getComponentForMinigame("SmokeMonster", "spectatorlobby")));
 		minigames.add(new SlapFight(this, this.getComponentForMinigame("SlapFight", "spawn"), this.getComponentForMinigame("SlapFight", "lobby"), this.getComponentForMinigame("SlapFight", "spectatorlobby")));
-		minigames.add(new ChickenTag(this, this.getComponentForMinigame("ChickenTag", "spawn"), this.getComponentForMinigame("ChickenTag", "lobby"), this.getComponentForMinigame("ChickenTag", "spectatorlobby")));
 
 		getLogger().info("[MinecraftParty] Finished Setup.");
 	}
@@ -1076,7 +1067,7 @@ public class Main extends JavaPlugin implements Listener {
 			Location t = this.getComponentForMinigame("MineField", "spawn");
 			MineField.reset(new Location(t.getWorld(), t.getBlockX(), t.getBlockY(), t.getBlockZ() + 30));
 			DeadEnd.reset(this.getComponentForMinigame("DeadEnd", "spawn"));
-			DisIntegration.reset(this.getComponentForMinigame("DisIntegration", "spawn"));*/
+			RedAlert.reset(this.getComponentForMinigame("RedAlert", "spawn"));*/
 		}
 	}
 

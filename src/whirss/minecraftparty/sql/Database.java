@@ -1,4 +1,4 @@
-package whirss.minecraftparty.sql; // replace this with yours 
+package whirss.minecraftparty.sql;
   
   
 import java.sql.Connection;

@@ -94,13 +94,17 @@ public class JumpnRun extends Minigame implements Listener{
 		
 		for (Map.Entry<String, Integer> entry : currentscore__.entrySet())
 		{
-		    if (max == null || entry.getValue().compareTo(max.getValue()) > 0)
-		    {
-		    	max = entry;
-		    }
+			if(!lost.contains(Bukkit.getPlayerExact(entry.getKey()))){
+				if (max == null || entry.getValue().compareTo(max.getValue()) > 0)
+			    {
+			    	max = entry;
+			    }	
+			}
 		}
 		
-		m.win(Bukkit.getPlayerExact(max.getKey()));
+		if(max != null){
+			m.win(Bukkit.getPlayerExact(max.getKey()));
+		}
 	}
 	
 }

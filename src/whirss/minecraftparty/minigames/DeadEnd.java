@@ -1,7 +1,6 @@
 package whirss.minecraftparty.minigames;
 
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -9,8 +8,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.scheduler.BukkitTask;
-import org.bukkit.util.Vector;
 
 import whirss.minecraftparty.Main;
 import whirss.minecraftparty.Minigame;
@@ -31,38 +28,13 @@ public class DeadEnd extends Minigame implements Listener{
 				p.getInventory().clear();
 				p.updateInventory();
 				
-				p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20 * 64, -5));
-				
 				int temp = Shop.getPlayerShopComponent(m, p.getName(), "speed_boost");
 				if(temp > 0){
-					p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20 * 60, 2));
+					p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20 * 60, 3));
 					Shop.removeFromPlayerShopComponent(m, p.getName(), "speed_boost", 1);
 				}
 			}
 		}, 5);
-	}
-	
-	@Override
-	public BukkitTask start(){
-		return Bukkit.getScheduler().runTaskTimer(m, new Runnable(){
-			public void run(){
-				for(String p_ : m.players){
-					Player p = Bukkit.getPlayer(p_);
-					if(p.isOnline()){
-						if(!lost.contains(p)){
-							Location l_ = p.getLocation();
-							l_.setPitch(0F);
-							Vector dir = l_.getDirection().normalize().multiply(0.5D); // 0.4
-							Vector dir_ = new Vector(dir.getX(), 0.0001D, dir.getZ());
-							p.setVelocity(dir_);
-
-							Vector v = p.getLocation().getDirection().normalize();
-							Location l = p.getLocation().subtract((new Vector(v.getX(), 0.0001D, v.getZ()).multiply(-1D)));
-						}
-					}
-				}
-			}
-		}, 3L, 3L);
 	}
 	
 	public static void setup(Location start, Main main, String name_){
