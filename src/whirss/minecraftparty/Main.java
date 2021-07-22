@@ -274,10 +274,7 @@ public class Main extends JavaPlugin implements Listener {
 		                      + " | |\\/| | | '_ \\ / _ \\/ __| '__/ _` | |_| __| |_) / _` | '__| __| | | |\n"
 		                      + " | |  | | | | | |  __| (__| | | (_| |  _| |_|  __| (_| | |  | |_| |_| |\n"
 		                      + " |_|  |_|_|_| |_|\\___|\\___|_|  \\__,_|_|  \\__|_|   \\__,_|_|   \\__|\\__, |\n"
-		                      + "                                                                  |___/\n"
-		                      + "\n"
-		                      + "by Whirss\n"
-		                      + "");
+		                      + "                                                                  |___/\n");
 			saveConfig();
 		}
 	}
@@ -319,6 +316,13 @@ public class Main extends JavaPlugin implements Listener {
 		settingsFile = new File(this.getDataFolder(),"settings.yml");
 		if(!settingsFile.exists()){
 			this.getSettings().options().copyDefaults(true);
+			getConfig().options().header(
+		              "  __  __ _                            __ _   ____            _\n"
+		                      + " |  \\/  (_)_ __   ___  ___ _ __ __ _ / _| |_|  _ \\ __ _ _ __| |_ _   _\n"
+		                      + " | |\\/| | | '_ \\ / _ \\/ __| '__/ _` | |_| __| |_) / _` | '__| __| | | |\n"
+		                      + " | |  | | | | | |  __| (__| | | (_| |  _| |_|  __| (_| | |  | |_| |_| |\n"
+		                      + " |_|  |_|_|_| |_|\\___|\\___|_|  \\__,_|_|  \\__|_|   \\__,_|_|   \\__|\\__, |\n"
+		                      + "                                                                  |___/\n");
 			saveSettings();
 		}
 	}
@@ -362,6 +366,13 @@ public class Main extends JavaPlugin implements Listener {
 		messagesFile = new File(this.getDataFolder(),"messages.yml");
 		if(!messagesFile.exists()){
 			this.getMessages().options().copyDefaults(true);
+			getConfig().options().header(
+		              "  __  __ _                            __ _   ____            _\n"
+		                      + " |  \\/  (_)_ __   ___  ___ _ __ __ _ / _| |_|  _ \\ __ _ _ __| |_ _   _\n"
+		                      + " | |\\/| | | '_ \\ / _ \\/ __| '__/ _` | |_| __| |_) / _` | '__| __| | | |\n"
+		                      + " | |  | | | | | |  __| (__| | | (_| |  _| |_|  __| (_| | |  | |_| |_| |\n"
+		                      + " |_|  |_|_|_| |_|\\___|\\___|_|  \\__,_|_|  \\__|_|   \\__,_|_|   \\__|\\__, |\n"
+		                      + "                                                                  |___/\n");
 			saveMessages();
 		}
 	}
@@ -405,6 +416,13 @@ public class Main extends JavaPlugin implements Listener {
 		scoreboardFile = new File(this.getDataFolder(),"scoreboard.yml");
 		if(!scoreboardFile.exists()){
 			this.getScoreboard().options().copyDefaults(true);
+			getConfig().options().header(
+		              "  __  __ _                            __ _   ____            _\n"
+		                      + " |  \\/  (_)_ __   ___  ___ _ __ __ _ / _| |_|  _ \\ __ _ _ __| |_ _   _\n"
+		                      + " | |\\/| | | '_ \\ / _ \\/ __| '__/ _` | |_| __| |_) / _` | '__| __| | | |\n"
+		                      + " | |  | | | | | |  __| (__| | | (_| |  _| |_|  __| (_| | |  | |_| |_| |\n"
+		                      + " |_|  |_|_|_| |_|\\___|\\___|_|  \\__,_|_|  \\__|_|   \\__,_|_|   \\__|\\__, |\n"
+		                      + "                                                                  |___/\n");
 			saveScoreboard();
 		}
 	}
@@ -448,6 +466,13 @@ public class Main extends JavaPlugin implements Listener {
 		mysqlFile = new File(this.getDataFolder(),"mysql.yml");
 		if(!mysqlFile.exists()){
 			this.getMysql().options().copyDefaults(true);
+			getConfig().options().header(
+		              "  __  __ _                            __ _   ____            _\n"
+		                      + " |  \\/  (_)_ __   ___  ___ _ __ __ _ / _| |_|  _ \\ __ _ _ __| |_ _   _\n"
+		                      + " | |\\/| | | '_ \\ / _ \\/ __| '__/ _` | |_| __| |_) / _` | '__| __| | | |\n"
+		                      + " | |  | | | | | |  __| (__| | | (_| |  _| |_|  __| (_| | |  | |_| |_| |\n"
+		                      + " |_|  |_|_|_| |_|\\___|\\___|_|  \\__,_|_|  \\__|_|   \\__,_|_|   \\__|\\__, |\n"
+		                      + "                                                                  |___/\n");
 			saveMysql();
 		}
 	}
