@@ -162,7 +162,7 @@ public class Main extends JavaPlugin implements Listener {
 		registerShop();
 		registerMysql();
 		
-		Shop.initShop(this);
+		
 		Shop.loadPrices(this);
 
 		min_players = getSettings().getInt("settings.min_players");

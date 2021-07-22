@@ -1,10 +1,31 @@
 shop:
-  grenades_price: 70
-  jumpboost_price: 60
-  deadendboost_price: 50
-  chickentagboost_price: 60
-  slapfight_knockback_price: 100
-  smokemonsterboost_price: 150
-  jumpnrunboost_price: 150
-  sheepfreenzyimmunity_price: 100
-  megagrenades_price: 130
+  displayname:
+    grenades: 'Grenades'
+    jumpboost: 'Jump Boost'
+    deadendboost: 'Speed Boost'
+    slapfight_knockback: 'Knockback'
+    smokemonsterboost: 'SmokeMonster Boost'
+    jumpnrun: 'Jumpnrun Boost'
+    sheepfreenzyimmunity: 'Explosion Immunity'
+    megagranades: 'MegaGrenades'
+  gui:
+    title: 'Shop - Credits: %credits%'
+    descriptions:
+      grenades: 'Use Grenades in Spleef to destroy 3x3 fields!'
+      jumpboost: 'Jump Boost for ColorMatch!'
+      deadendboost: 'Speed Boost for DeadEnd!'
+      slapfight_knockback: 'Enchants your stick with a higher level in SlapFight!'
+      smokemonsterboost: 'Gives you a speed boost in SmokeMonster!'
+      jumpnrun: 'Gives you a speed boost in JumpnRun!'
+      sheepfreenzyimmunity: 'Saves your from one explosion in SheepFreenzy!'
+      megagranades: 'Use MegaGrenades in Spleef to destroy 5x5 fields!'
+  prices:
+    grenades: 70
+    jumpboost: 60
+    deadendboost: 50
+    slapfight_knockback: 100
+    smokemonsterboost: 150
+    jumpnrunboost: 150
+    sheepfreenzyimmunity: 100
+    megagrenades: 130
+  data: []

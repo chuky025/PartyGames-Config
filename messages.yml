@@ -17,12 +17,14 @@ messages:
     winner_broadcast: '&6%player% &awon this round and earned &b%credits% &aCredits!'
     stopped_game: '&cStopping minigame, because there are less players than required!
     (%min_players%)'
-    ingame_commands: '&3You''re in MinecraftParty. Please use &6/mp leave &3to leave the
+    ingame_commands: '&3You are in MinecraftParty. Please use &6/mp leave &3to leave the
     minigame.'
     your_credits: '&aYou have &6%credits% &aCredits.'
     player_credits: '&a%player% has &6%credits% &aCredits.'
     you_shot: '&6You shot &5%player%&6!'
     double_jump: '&cYou can only use Double Jump after a cooldown of 10 seconds.'
+    no_money: '&cYou dont have enough money!'
+    purchased_product: '&aYou have purchased a %product% successfully.'
   setup:
     setup_start: '&aStarting the creation of %minigame%.'
     setup_finish: '&aFinished'
