@@ -29,6 +29,7 @@ messages:
     saved_lobby: '&aSaved Main lobby'
     saved_component: '&aSaved component'
     reload: '&aSuccessfully reloaded all files.'
+    sign_added: '&aThe sign has been successfully added.'
     disable_minigame: '&cDisabled %minigame%.'
     disable_error1: '&cCould not find given Minigame.'
     disable_error2: '&cYou cannot change the state of a minigame while a game is running.'
@@ -38,7 +39,7 @@ messages:
   other:
     unknown_command: '&cThat command does not exist'
     no_perms: '&cYou do not have permission to execute this command.'
-    error: An error occured
+    error: '&cAn error occured'
     stats_title: '&3-- &6Statistics &3--'
     minigames_title: '&3-- &6Minigames &3--'
     leaderboard_title: '&3-- &6Leaderboards &3--'

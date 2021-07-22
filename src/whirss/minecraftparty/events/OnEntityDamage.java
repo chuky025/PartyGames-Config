@@ -1,7 +1,6 @@
 package whirss.minecraftparty.events;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -79,7 +78,7 @@ public class OnEntityDamage implements Listener {
 										main.c = main.seconds; // just skips all the remaining seconds and sets to 60, current timer will do the rest
 									}
 									
-									damager.sendMessage(ChatColor.GOLD + "You shot " + ChatColor.DARK_PURPLE + p.getName() + ChatColor.GOLD + "!");
+									damager.sendMessage(main.getMessages().getString("messages.game.you_shot").replace("%player%", p.getName()).replace("&", "§"));
 								}
 							}
 						}

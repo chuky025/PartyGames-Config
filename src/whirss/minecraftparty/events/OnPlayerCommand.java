@@ -43,7 +43,7 @@ public class OnPlayerCommand implements Listener {
 					main.minigames.get(main.currentmg).leave(p);
 				}
 				main.players.remove(p.getName());
-				p.sendMessage(ChatColor.RED + main.getConfig().getString("strings.you_left"));
+				p.sendMessage(main.getMessages().getString("messages.game.you_left").replace("&", "§"));
 				if(main.players.size() < main.min_players){
 					Bukkit.getScheduler().runTaskLater(main, new Runnable(){
 						public void run(){
@@ -59,11 +59,13 @@ public class OnPlayerCommand implements Listener {
 			}
 			
 			if(!event.getPlayer().isOp()){
-				if(event.getMessage().startsWith("/mp") || event.getMessage().equalsIgnoreCase("/minecraftparty")){
+				if(event.getMessage().startsWith("/mp") || event.getMessage().equalsIgnoreCase("/mcparty") || event.getMessage().equalsIgnoreCase("/mcp") 
+						|| event.getMessage().equalsIgnoreCase("/minecraftparty") || event.getMessage().equalsIgnoreCase("/mpadmin") || event.getMessage().equalsIgnoreCase("/mpa")  
+						|| event.getMessage().equalsIgnoreCase("/mcpartyadmin") || event.getMessage().equalsIgnoreCase("/minecraftpartyadmin")){
 					// nothing
 				}else{
 					event.setCancelled(true);
-					event.getPlayer().sendMessage("§3You're in MinecraftParty. Please use §6/mp leave §3to leave the minigame.");
+					event.getPlayer().sendMessage(main.getMessages().getString("messages.game.ingame_commands").replace("&", "§"));
 				}
 			}
 		}

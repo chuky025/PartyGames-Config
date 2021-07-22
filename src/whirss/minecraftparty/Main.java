@@ -258,7 +258,7 @@ public class Main extends JavaPlugin implements Listener {
 		pm.registerEvents(new OnPlayerTeleport(this), this);
 		pm.registerEvents(new OnProjectileLand(this), this);
 		pm.registerEvents(new OnInteractEvent(this), this);
-		pm.registerEvents(new OnSignChange(), this);
+		pm.registerEvents(new OnSignChange(this), this);
 		
 	}
 	
@@ -1387,11 +1387,9 @@ public class Main extends JavaPlugin implements Listener {
 					return;
 				}
 			}
-			sender.sendMessage(ChatColor.RED + "Could not find given Minigame.");
-			sender.sendMessage(getMessages().getString("messages.setup.nable_error1").replace("%minigame%", minigame).replace("&", "§"));
-		}else{
-			sender.sendMessage(ChatColor.RED + "You cannot change the state of a minigame while a game is running.");
 			sender.sendMessage(getMessages().getString("messages.setup.enable_error1").replace("%minigame%", minigame).replace("&", "§"));
+		}else{
+			sender.sendMessage(getMessages().getString("messages.setup.enable_error2").replace("%minigame%", minigame).replace("&", "§"));
 		}
 	}
 	

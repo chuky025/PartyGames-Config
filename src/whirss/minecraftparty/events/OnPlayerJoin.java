@@ -45,11 +45,11 @@ public class OnPlayerJoin implements Listener {
 		if (!main.getConfig().getBoolean("config.game-on-join")) return;
 
 		if(main.players.contains(event.getPlayer().getName())){
-			p.sendMessage(ChatColor.RED + "You are already in the game!");
+			p.sendMessage(main.getMessages().getString("messages.game.alredy_ingame").replace("&", "§"));
 			return;
 		}
 		main.players.add(p.getName());
-		event.setJoinMessage(ChatColor.GOLD + p.getName() + " has joined the game!");
+		event.setJoinMessage(main.getMessages().getString("messages.game.player_joined").replace("&", "§"));
 
 
 		Bukkit.getScheduler().scheduleSyncDelayedTask(main, new Runnable() {
@@ -69,7 +69,7 @@ public class OnPlayerJoin implements Listener {
 						p.teleport(main.minigames.get(main.currentmg).spawn);
 					}
 				} catch (Exception ex) {
-					p.sendMessage(ChatColor.RED + "An error occured.");
+					p.sendMessage(main.getMessages().getString("messages.other.error").replace("&", "§"));
 				}
 			}
 		}, 6);

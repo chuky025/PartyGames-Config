@@ -36,10 +36,10 @@ public class OnInteractEvent implements Listener {
 					final Sign s = (Sign) event.getClickedBlock().getState();
 					if (s.getLine(1).equalsIgnoreCase(ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + "Minecraft" + ChatColor.LIGHT_PURPLE.toString() + ChatColor.BOLD + "Party " + ChatColor.GRAY + "- " + ChatColor.WHITE + "Help")){
 						if(main.players.contains(event.getPlayer().getName())){
-							event.getPlayer().sendMessage(ChatColor.GOLD + "Use /mp leave to leave!");
+							event.getPlayer().sendMessage(main.getMessages().getString("messages.game.on_join").replace("&", "§"));
 						}else{
 							if(main.players.size() > main.getConfig().getInt("config.max_players") - 1){
-								event.getPlayer().sendMessage(ChatColor.RED + "You can't join because the minigames party is full!");
+								event.getPlayer().sendMessage(main.getMessages().getString("messages.game.game_full").replace("&", "§"));
 								return;
 							}
 							main.players.add(event.getPlayer().getName());
@@ -48,7 +48,7 @@ public class OnInteractEvent implements Listener {
 								main.pinv.put(event.getPlayer().getName(), event.getPlayer().getInventory().getContents());
 								main.startNew();
 								if(main.min_players > 1){
-									event.getPlayer().sendMessage(ChatColor.GREEN + "You joined the queue. There are " + ChatColor.GOLD + Integer.toString(main.min_players) + ChatColor.GREEN + " players needed to start.");
+									event.getPlayer().sendMessage(main.getMessages().getString("messages.game.joined_queue").replace("%min_players%", Integer.toString(main.min_players)).replace("&", "§"));
 								}
 							}else{ // else: just join the minigame
 								try{

@@ -11,13 +11,13 @@ import org.bukkit.event.player.PlayerToggleFlightEvent;
 import whirss.minecraftparty.Main;
 
 public class OnFlightAttempt implements Listener {
-	
+
 	private Main main;
-	
+
 	public OnFlightAttempt(Main main) {
 		this.main = main;
 	}
-	
+
 	@EventHandler
 	public void onFlightAttempt(PlayerToggleFlightEvent event) {
 		final Player p = event.getPlayer();
@@ -38,7 +38,7 @@ public class OnFlightAttempt implements Listener {
 			        	}
 			        }, 20 * 10);
 	    		}else{
-	    			p.sendMessage(ChatColor.RED + "You can only use Double Jump after a cooldown of 10 seconds.");
+	    			p.sendMessage(main.getMessages().getString("messages.game.double_jump").replace("&", "§"));
 	    			p.setAllowFlight(false);
 			        p.setFlying(false);
 			        event.setCancelled(true);
