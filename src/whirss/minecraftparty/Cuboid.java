@@ -199,7 +199,7 @@ public final class Cuboid {
 			throw new IllegalArgumentException("Invalid root map!");
 		}
 
-		final String owner = (String) root.get("Owner");
+		//final String owner = (String) root.get("Owner");
 		final World world = Bukkit.getServer().getWorld((String) root.get("World"));
 		final int x1 = (Integer) root.get("X1");
 		final int y1 = (Integer) root.get("Y1");

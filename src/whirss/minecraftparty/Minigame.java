@@ -98,16 +98,16 @@ public class Minigame {
 		if(p.hasPotionEffect(PotionEffectType.SPEED)){
 			p.removePotionEffect(PotionEffectType.SPEED);
 		}
-		if(p.getPassenger()  != null){
-			Entity t = p.getPassenger();
+		if(p.getPassengers()  != null){
+			Entity t = (Entity) p.getPassengers();
 			p.eject();
 			t.remove();
 		}
 		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(m, new Runnable() {
 			@Override
 			public void run() {
-				if(p.getPassenger() != null){
-					Entity t = p.getPassenger();
+				if(p.getPassengers() != null){
+					Entity t = (Entity) p.getPassengers();
 					p.eject();
 					t.remove();
 				}
@@ -150,8 +150,8 @@ public class Minigame {
 		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(m, new Runnable() {
 			@Override
 			public void run() {
-				if(p.getPassenger() != null){
-					Entity t = p.getPassenger();
+				if(p.getPassengers() != null){
+					Entity t = (Entity) p.getPassengers();
 					p.eject();
 					t.remove();
 				}
@@ -185,8 +185,8 @@ public class Minigame {
 		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(m, new Runnable() {
 			@Override
 			public void run() {
-				if(p.getPassenger() != null){
-					Entity t = p.getPassenger();
+				if(p.getPassengers() != null){
+					Entity t = (Entity) p.getPassengers();
 					p.eject();
 					t.remove();
 				}

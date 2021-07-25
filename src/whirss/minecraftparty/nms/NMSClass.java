@@ -1,21 +1,26 @@
 package whirss.minecraftparty.nms;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 public class NMSClass {
 
-	public static Class<?> getClazz(String t){
-		 String version = "net.minecraft.server." + Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
-
-		 Class<?> c = null;
-		 try {
-		     c = Class.forName(version + t);
-		 }catch(Exception e) {
-			 e.printStackTrace();
-			 return null;
-		 }
-		 
-		 return c;
-	}
+	public Class<?> getNMSClass(String name) {
+        try {
+            return Class.forName("net.minecraft.server"
+                    + Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3] + "." + name);
+        } catch (ClassNotFoundException ex) {
+        }
+        return null;
+    }
+	
+	public void sendPacket(Player player, Object packet) {
+        try {
+            Object handle = player.getClass().getMethod("getHandle").invoke(player);
+            Object playerConnection = handle.getClass().getField("playerConnection").get(handle);
+            playerConnection.getClass().getMethod("sendPacket", getNMSClass("Packet")).invoke(playerConnection, packet);
+        } catch (Exception ex) {
+        }
+    }
 	
 }

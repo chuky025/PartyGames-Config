@@ -37,6 +37,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
@@ -690,8 +691,7 @@ public class Main extends JavaPlugin implements Listener {
 		}
 		
 		// update scoreboard
-		//updateScoreboard(seconds - c); The scoreboard produces lag, I will soon make a new system.
-		updateActionbar(seconds - c); //this is temporal
+		updateScoreboard();
 
 		// stop the whole party after some rounds
 		if(c_ > (minigames.size() - disabledMinigamesC) * seconds - 3){
@@ -932,136 +932,33 @@ public class Main extends JavaPlugin implements Listener {
 	public HashMap<String, Integer> currentscore = new HashMap<String, Integer>();
 
 	public Main main;
-	
-	public void updateActionbar(int c){
-		for(String pl : players){
-			Player p = Bukkit.getPlayerExact(pl);
-			p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.GREEN + "[" + Integer.toString(currentmg + 1) + "/" + Integer.toString(minigames.size()) + "] [" + Integer.toString(c) + "]"));
+
+	private void updateScoreboard() {
+		ScoreboardManager manager = Bukkit.getScoreboardManager();
+		Scoreboard scoreboard = manager.getNewScoreboard();
+		Objective objective = scoreboard.registerNewObjective("score", "dummy");
+		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
+		objective.setDisplayName(ChatColor.translateAlternateColorCodes('&', getScoreboard().getString("scoreboard.playing.title")));
+		List<String> lines = getScoreboard().getStringList("scoreboard.playing.lines");
+		for(int i=0;i<lines.size();i++) {
+			Score score = objective.getScore(ChatColor.translateAlternateColorCodes('&', lines.get(i)
+					.replace("%players%", Integer.toString(players.size())+"" )
+					.replace("%min_players%", Integer.toString(min_players)+"")
+					//.replace("%game%", Minigame.name+"")
+					.replace("%time%", Integer.toString(seconds - main.c)+"")
+					.replace("%round%", Integer.toString(currentmg + 1)+"")
+					.replace("%max_round%", Integer.toString(minigames.size())+"")
+					.replace("%players%", Integer.toString(players.size())+"")
+					));
+			score.setScore(lines.size()-(i));
+			for(String pl : players) {
+				Player p = Bukkit.getPlayerExact(pl);
+				p.setScoreboard(scoreboard);
+			}
 		}
 	}
 
-	/*public void updateScoreboard(int c){
-
-		ScoreboardManager manager = Bukkit.getScoreboardManager();
-
-		boolean isNeeded = false;
-		boolean isSheep = false;
-		
-		if(minigames.get(currentmg).name.equalsIgnoreCase("minefield") || minigames.get(currentmg).name.equalsIgnoreCase("jumpnrun")){
-			isNeeded = true;
-		}
-
-		if(minigames.get(currentmg).name.equalsIgnoreCase("sheepfreenzy")){
-			isNeeded = true;
-			isSheep = true;
-		}
-		
-		for(String pl : players){
-			Player p = Bukkit.getPlayerExact(pl);
-			Scoreboard board = manager.getNewScoreboard();
-
-			Objective objective = board.registerNewObjective("test", "dummy");
-			objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-
-			objective.setDisplayName("[" + Integer.toString(currentmg + 1) + "/" + Integer.toString(minigames.size()) + "] [" + Integer.toString(c) + "]");
-
-			for(String pl_ : players){
-				Player p_ = Bukkit.getPlayerExact(pl_);
-				if(isNeeded){
-					int score = 0;
-					if(!isSheep){
-						score = p_.getLocation().getBlockZ() - minigames.get(currentmg).finish.getBlockZ();
-						if(currentscore.containsKey(pl_)){
-							int oldscore = currentscore.get(pl_);
-							if(score > oldscore){
-								currentscore.put(pl_, score);
-							}else{
-								score = oldscore;
-							}
-						}else{
-							currentscore.put(pl_, score);
-						}
-						if(currentmg > -1 && currentmg < minigames.size()){
-							if(minigames.get(currentmg).lost.contains(p_)){
-								String tempn = ChatColor.RED + pl_;
-								if(p_.getName().length() > 14){
-									tempn = ChatColor.RED + pl_.substring(0, pl_.length() - 3);
-								}
-								objective.getScore(Bukkit.getOfflinePlayer(tempn)).setScore(score);
-							}else{
-								String tempn = ChatColor.GREEN + pl_;
-								if(p_.getName().length() > 14){
-									tempn = ChatColor.GREEN + pl_.substring(0, pl_.length() - 3);
-								}
-								objective.getScore(Bukkit.getOfflinePlayer(tempn)).setScore(score);
-							}
-						}else{
-							objective.getScore(p_).setScore(score);
-						}
-					}else{
-						if(!currentscore.containsKey(pl_)){
-							currentscore.put(pl_, 0);
-						}
-						objective.getScore(p_).setScore(currentscore.get(pl_));
-					}
-				}else{
-					if(currentmg > -1 && currentmg < minigames.size()){
-						if(minigames.get(currentmg).lost.contains(p_)){
-							String tempn = ChatColor.RED + pl_;
-							if(p_.getName().length() > 14){
-								tempn = ChatColor.RED + pl_.substring(0, pl_.length() - 3);
-							}
-							objective.getScore(Bukkit.getOfflinePlayer(tempn)).setScore(0);
-						}else{
-							String tempn = ChatColor.GREEN + pl_;
-							if(p_.getName().length() > 14){
-								tempn = ChatColor.GREEN + pl_.substring(0, pl_.length() - 3);
-							}
-							objective.getScore(Bukkit.getOfflinePlayer(tempn)).setScore(0);
-						}
-					}else{
-						objective.getScore(p_).setScore(0);
-					}
-				}
-			}
-
-			p.setScoreboard(board);
-		}
-	}*/
-
-
-	/*public void updateScoreboardOUTGAME(final String player){
-		
-		if(!getSettings().getBoolean("config.scoreboardoutgame")){
-			return;
-		}
-		
-		ScoreboardManager manager = Bukkit.getScoreboardManager();
-
-		final Player p = Bukkit.getPlayer(player);
-
-		Scoreboard board = manager.getNewScoreboard();
-
-		Objective objective = board.registerNewObjective("test", "dummy");
-		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-
-		objective.setDisplayName(ChatColor.GOLD + "MinecraftParty!");
-
-		objective.getScore(Bukkit.getOfflinePlayer("Credits")).setScore(this.getPlayerStats(player, "credits"));
-
-		p.setScoreboard(board);
-
-		Runnable r = new Runnable() {
-	        public void run() {
-	        	m.removeScoreboard(p);
-	        }
-	    };
-	    
-		Bukkit.getScheduler().scheduleSyncDelayedTask(this, r, 20 * 10);
-
-	}*/
-
-	/*public void removeScoreboard(Player p) {
+	public void removeScoreboard(Player p) {
 		try {
 			ScoreboardManager manager = Bukkit.getScoreboardManager();
 			Scoreboard sc = manager.getNewScoreboard();
@@ -1071,7 +968,7 @@ public class Main extends JavaPlugin implements Listener {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}/*
+	}
 
 	/*public void start(){
 		// if not running -> start
