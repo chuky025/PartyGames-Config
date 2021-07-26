@@ -2,6 +2,7 @@ package whirss.minecraftparty;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -18,7 +19,6 @@ public class Minigame {
 	public ArrayList<Player> lost = new ArrayList<Player>();
 	
 	public String name = "";
-	public String scoreboardname = "";
 	public static Main m;
 	public Location spawn;
 	public Location lobby;
@@ -64,8 +64,10 @@ public class Minigame {
 				for(String p_ : m.players){
 					Player p = Bukkit.getPlayerExact(p_);
 					if(p.isOnline()){
-						scoreboardname = null;
 						m.removeScoreboard(p);
+						m.getConfig().set("ag", name);
+						m.saveConfig();
+						m.reloadConfig();
 						//p.sendMessage(ChatColor.GREEN + "Starting in " + ChatColor.GOLD + Integer.toString(count));
 						p.sendTitle(m.getTitles().getString("titles.countdown.title").replace("%count%", Integer.toString(count)).replace("%minigame%", name).replace("&", "§"),m.getTitles().getString("titles.countdown.subtitle").replace("%minigame%", name).replace("&", "§"), 0, 30, 0);
 					}
@@ -75,8 +77,6 @@ public class Minigame {
 					for(String p_ : m.players){
 						Player p = Bukkit.getPlayerExact(p_);
 						if(p.isOnline()){
-							m.removeScoreboard(p);
-							scoreboardname = name;
 							p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 30.0F, 50.0F);
 							p.sendTitle(m.getTitles().getString("titles.after_countdown.title").replace("%minigame%", name).replace("&", "§"), m.getTitles().getString("titles.after_countdown.subtitle").replace("%minigame%", name).replace("&", "§"), 0, 30, 10);
 						}

@@ -276,7 +276,9 @@ public class Main extends JavaPlugin implements Listener {
 		                      + " | |\\/| | | '_ \\ / _ \\/ __| '__/ _` | |_| __| |_) / _` | '__| __| | | |\n"
 		                      + " | |  | | | | | |  __| (__| | | (_| |  _| |_|  __| (_| | |  | |_| |_| |\n"
 		                      + " |_|  |_|_|_| |_|\\___|\\___|_|  \\__,_|_|  \\__|_|   \\__,_|_|   \\__|\\__, |\n"
-		                      + "                                                                  |___/\n");
+		                      + "                                                                  |___/\n"
+		                      + ""
+		                      + "We highly recommend not to modify this file.");
 			saveConfig();
 		}
 	}
@@ -943,7 +945,7 @@ public class Main extends JavaPlugin implements Listener {
 				Score score = objective.getScore(ChatColor.translateAlternateColorCodes('&', lines.get(i)
 						.replace("%players%", Integer.toString(players.size()) )
 						.replace("%min_players%", Integer.toString(min_players))
-						.replace("%minigame%", mg.scoreboardname)
+						.replace("%minigame%", m.getConfig().getString("ag"))
 						.replace("%time%", Integer.toString(seconds - c))
 						.replace("%round%", Integer.toString(currentmg + 1))
 						.replace("%max_round%", Integer.toString(minigames.size()))
@@ -965,7 +967,7 @@ public class Main extends JavaPlugin implements Listener {
 			Scoreboard sc = manager.getNewScoreboard();
 			
 			sc.clearSlot(DisplaySlot.SIDEBAR);
-			p.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
+			p.setScoreboard(sc);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
