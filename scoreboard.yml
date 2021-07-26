@@ -4,7 +4,7 @@ scoreboard:
   lines:
   - '&a'
   - '&fGame:'
-  - '&b%game%'
+  - '&b%minigame%'
   - '&b'
   - '&fTime: &a%time%'
   - '&fRound: &a%round%&7/&a%max_round%'

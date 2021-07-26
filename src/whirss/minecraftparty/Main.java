@@ -15,8 +15,6 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeMap;
 
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
 
@@ -220,8 +218,8 @@ public class Main extends JavaPlugin implements Listener {
             if (this.getDescription().getVersion().equalsIgnoreCase(version)) {
             	//Bukkit.getConsoleSender().sendMessage("There is not a new update available.");
             } else {
-            	getLogger().info("[MinecraftParty] An update to MinecraftParty is available: " + version + ". You are on " + currentversion);
-            	getLogger().info("[MinecraftParty] Download it here: www.spigotmc.org/resources/86837/");
+            	Bukkit.getConsoleSender().sendMessage("[MinecraftParty] An update to MinecraftParty is available: " + version + ". You are on " + currentversion);
+            	Bukkit.getConsoleSender().sendMessage("[MinecraftParty] Download it here: www.spigotmc.org/resources/86837/");
             }
         });
        }
@@ -938,22 +936,25 @@ public class Main extends JavaPlugin implements Listener {
 		Scoreboard scoreboard = manager.getNewScoreboard();
 		Objective objective = scoreboard.registerNewObjective("score", "dummy");
 		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-		objective.setDisplayName(ChatColor.translateAlternateColorCodes('&', getScoreboard().getString("scoreboard.playing.title")));
-		List<String> lines = getScoreboard().getStringList("scoreboard.playing.lines");
-		for(int i=0;i<lines.size();i++) {
-			Score score = objective.getScore(ChatColor.translateAlternateColorCodes('&', lines.get(i)
-					.replace("%players%", Integer.toString(players.size())+"" )
-					.replace("%min_players%", Integer.toString(min_players)+"")
-					//.replace("%game%", Minigame.name+"")
-					.replace("%time%", Integer.toString(seconds - main.c)+"")
-					.replace("%round%", Integer.toString(currentmg + 1)+"")
-					.replace("%max_round%", Integer.toString(minigames.size())+"")
-					.replace("%players%", Integer.toString(players.size())+"")
-					));
-			score.setScore(lines.size()-(i));
-			for(String pl : players) {
-				Player p = Bukkit.getPlayerExact(pl);
-				p.setScoreboard(scoreboard);
+		objective.setDisplayName(ChatColor.translateAlternateColorCodes('&', getScoreboard().getString("scoreboard.title")));
+		List<String> lines = getScoreboard().getStringList("scoreboard.lines");
+		for(Minigame mg : minigames){
+			for(int i=0;i<lines.size();i++) {
+				Score score = objective.getScore(ChatColor.translateAlternateColorCodes('&', lines.get(i)
+						.replace("%players%", Integer.toString(players.size()) )
+						.replace("%min_players%", Integer.toString(min_players))
+						.replace("%minigame%", mg.scoreboardname)
+						.replace("%time%", Integer.toString(seconds - c))
+						.replace("%round%", Integer.toString(currentmg + 1))
+						.replace("%max_round%", Integer.toString(minigames.size()))
+						.replace("%players%", Integer.toString(players.size()))
+						));
+				
+				score.setScore(lines.size()-(i));
+				for(String pl : players) {
+					Player p = Bukkit.getPlayerExact(pl);
+					p.setScoreboard(scoreboard);
+				}
 			}
 		}
 	}
@@ -964,7 +965,7 @@ public class Main extends JavaPlugin implements Listener {
 			Scoreboard sc = manager.getNewScoreboard();
 			
 			sc.clearSlot(DisplaySlot.SIDEBAR);
-			p.setScoreboard(sc);
+			p.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1077,7 +1078,7 @@ public class Main extends JavaPlugin implements Listener {
 					}
 				}
 				
-				p.sendMessage(ChatColor.GOLD + getSettings().getString("strings.next_round_30_seconds"));
+				p.sendMessage(ChatColor.GOLD + getSettings().getString("messages.game.next_round"));
 				p.getInventory().clear();
 				p.updateInventory();
 			}else{

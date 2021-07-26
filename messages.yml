@@ -54,7 +54,7 @@ messages:
     - '&2&m=============================================='
     jumpnrun:
     - '&2&m=============================================='
-    - '&aGame &7&m-&e&l Color Match'
+    - '&aGame &7&m-&e&l Jump and run'
     - ''
     - '&fGame description:'
     - '&fJump to the finish!'
@@ -87,7 +87,7 @@ messages:
     - '&2&m=============================================='
     smokemonster:
     - '&2&m=============================================='
-    - '&aGame &7&m-&e&l SmokeMonster'
+    - '&aGame &7&m-&e&l Smoke Monster'
     - ''
     - '&fGame description:'
     - '&fAvoid the smoke monster!'

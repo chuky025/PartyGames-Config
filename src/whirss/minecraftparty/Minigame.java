@@ -18,6 +18,7 @@ public class Minigame {
 	public ArrayList<Player> lost = new ArrayList<Player>();
 	
 	public String name = "";
+	public String scoreboardname = "";
 	public static Main m;
 	public Location spawn;
 	public Location lobby;
@@ -63,6 +64,8 @@ public class Minigame {
 				for(String p_ : m.players){
 					Player p = Bukkit.getPlayerExact(p_);
 					if(p.isOnline()){
+						scoreboardname = null;
+						m.removeScoreboard(p);
 						//p.sendMessage(ChatColor.GREEN + "Starting in " + ChatColor.GOLD + Integer.toString(count));
 						p.sendTitle(m.getTitles().getString("titles.countdown.title").replace("%count%", Integer.toString(count)).replace("%minigame%", name).replace("&", "§"),m.getTitles().getString("titles.countdown.subtitle").replace("%minigame%", name).replace("&", "§"), 0, 30, 0);
 					}
@@ -72,6 +75,8 @@ public class Minigame {
 					for(String p_ : m.players){
 						Player p = Bukkit.getPlayerExact(p_);
 						if(p.isOnline()){
+							m.removeScoreboard(p);
+							scoreboardname = name;
 							p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 30.0F, 50.0F);
 							p.sendTitle(m.getTitles().getString("titles.after_countdown.title").replace("%minigame%", name).replace("&", "§"), m.getTitles().getString("titles.after_countdown.subtitle").replace("%minigame%", name).replace("&", "§"), 0, 30, 10);
 						}
@@ -98,16 +103,16 @@ public class Minigame {
 		if(p.hasPotionEffect(PotionEffectType.SPEED)){
 			p.removePotionEffect(PotionEffectType.SPEED);
 		}
-		if(p.getPassengers()  != null){
-			Entity t = (Entity) p.getPassengers();
+		if(p.getPassenger()  != null){
+			Entity t = p.getPassenger();
 			p.eject();
 			t.remove();
 		}
 		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(m, new Runnable() {
 			@Override
 			public void run() {
-				if(p.getPassengers() != null){
-					Entity t = (Entity) p.getPassengers();
+				if(p.getPassenger() != null){
+					Entity t = p.getPassenger();
 					p.eject();
 					t.remove();
 				}
@@ -150,8 +155,8 @@ public class Minigame {
 		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(m, new Runnable() {
 			@Override
 			public void run() {
-				if(p.getPassengers() != null){
-					Entity t = (Entity) p.getPassengers();
+				if(p.getPassenger() != null){
+					Entity t = p.getPassenger();
 					p.eject();
 					t.remove();
 				}
@@ -185,8 +190,8 @@ public class Minigame {
 		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(m, new Runnable() {
 			@Override
 			public void run() {
-				if(p.getPassengers() != null){
-					Entity t = (Entity) p.getPassengers();
+				if(p.getPassenger() != null){
+					Entity t = p.getPassenger();
 					p.eject();
 					t.remove();
 				}
@@ -217,5 +222,6 @@ public class Minigame {
 			return m.getConfig().getBoolean("minigames." + name + ".enabled");
 		}
 	}
+
 	
 }
