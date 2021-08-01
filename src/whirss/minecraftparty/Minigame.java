@@ -186,17 +186,23 @@ public class Minigame {
 				if(m.bungee) {
 					if(m.connect_hub) {
 						if(m.placeholderapi) {
-							p.kickPlayer(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getMessages().getString("messages.game.you_left"))));
+							p.sendMessage(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getMessages().getString("messages.game.you_left"))));
 						} else {
-							p.kickPlayer(ChatColor.translateAlternateColorCodes('&', m.getMessages().getString("messages.game.you_left")));
+							p.sendMessage(ChatColor.translateAlternateColorCodes('&', m.getMessages().getString("messages.game.you_left")));
 						}
-						m.sendServer(p, m.getSettings().getString("settings.plugin.bungee.hub"));
+						m.sendToServer(p, m.getSettings().getString("settings.plugin.bungee.hub"));
 					} else {
-						if(m.placeholderapi) {
-							p.kickPlayer(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getMessages().getString("messages.game.you_left"))));
-						} else {
-							p.kickPlayer(ChatColor.translateAlternateColorCodes('&', m.getMessages().getString("messages.game.you_left")));
+						if(m.shutdown) {
+							if(m.placeholderapi) {
+								p.kickPlayer(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getMessages().getString("messages.game.you_left"))));
+							} else {
+								p.kickPlayer(ChatColor.translateAlternateColorCodes('&', m.getMessages().getString("messages.game.you_left")));
+							}
 						}
+					}
+					
+					if(m.shutdown) {
+						Bukkit.getServer().shutdown();
 					}
 				}
 

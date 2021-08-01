@@ -101,50 +101,58 @@ public class PlayerCommand implements CommandExecutor {
 						}
 					}
 				}else if(args[0].equalsIgnoreCase("join")){
-					if(main.players.contains(p.getName())){
+					if(main.bungee) {
 						if(main.placeholderapi){
-							sender.sendMessage(PlaceholderAPI.setPlaceholders((OfflinePlayer) sender, ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.on_join"))));
+							sender.sendMessage(PlaceholderAPI.setPlaceholders((OfflinePlayer) sender, ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.unknown_command"))));
 						} else {
-							sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.on_join")));
+							sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.unknown_command")));
 						}
-					}else{
-						if(main.players.size() > main.max_players - 1){
+					} else {
+						if(main.players.contains(p.getName())){
 							if(main.placeholderapi){
-								sender.sendMessage(PlaceholderAPI.setPlaceholders((OfflinePlayer) sender, ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.game_full"))));
+								sender.sendMessage(PlaceholderAPI.setPlaceholders((OfflinePlayer) sender, ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.on_join"))));
 							} else {
-								sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.game_full")));
+								sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.on_join")));
 							}
-							return true;
-						}
-						main.players.add(p.getName());
-						// if its the first player to join, start the whole minigame
-						if(main.players.size() < main.min_players + 1){
-							main.pinv.put(p.getName(), p.getInventory().getContents());
-							main.startNew();
-							if(main.min_players > 1){
+						}else{
+							if(main.players.size() > main.max_players - 1){
+								if(main.placeholderapi){
+									sender.sendMessage(PlaceholderAPI.setPlaceholders((OfflinePlayer) sender, ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.game_full"))));
+								} else {
+									sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.game_full")));
+								}
+								return true;
+							}
+							main.players.add(p.getName());
+							// if its the first player to join, start the whole minigame
+							if(main.players.size() < main.min_players + 1){
+								main.pinv.put(p.getName(), p.getInventory().getContents());
+								main.startNew();
+								if(main.min_players > 1){
+									if(main.placeholderapi){
+										sender.sendMessage(PlaceholderAPI.setPlaceholders((OfflinePlayer) sender, ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.joined_queue").replace("%min_players%", Integer.toString(main.min_players)))));
+									} else {
+										sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.joined_queue").replace("%min_players%", Integer.toString(main.min_players))));
+									}
+									
+								}
+							}else{ // else: just join the minigame
+								try{
+									main.pinv.put(p.getName(), p.getInventory().getContents());
+									if(main.ingame_started){
+										main.minigames.get(main.currentmg).lost.add(p);
+										main.minigames.get(main.currentmg).spectate(p);
+									}else{
+										main.minigames.get(main.currentmg).join(p);
+									}
+								}catch(Exception e){}
 								if(main.placeholderapi){
 									sender.sendMessage(PlaceholderAPI.setPlaceholders((OfflinePlayer) sender, ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.joined_queue").replace("%min_players%", Integer.toString(main.min_players)))));
 								} else {
 									sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.joined_queue").replace("%min_players%", Integer.toString(main.min_players))));
 								}
-								
-							}
-						}else{ // else: just join the minigame
-							try{
-								main.pinv.put(p.getName(), p.getInventory().getContents());
-								if(main.ingame_started){
-									main.minigames.get(main.currentmg).lost.add(p);
-									main.minigames.get(main.currentmg).spectate(p);
-								}else{
-									main.minigames.get(main.currentmg).join(p);
-								}
-							}catch(Exception e){}
-							if(main.placeholderapi){
-								sender.sendMessage(PlaceholderAPI.setPlaceholders((OfflinePlayer) sender, ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.joined_queue").replace("%min_players%", Integer.toString(main.min_players)))));
-							} else {
-								sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.joined_queue").replace("%min_players%", Integer.toString(main.min_players))));
-							}
-						}	
+							}	
+						}
 					}
 				}else if(args[0].equalsIgnoreCase("shop")){
 					Shop.openShop(main, p.getName());

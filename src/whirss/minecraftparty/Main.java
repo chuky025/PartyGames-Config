@@ -182,6 +182,8 @@ public class Main extends JavaPlugin implements Listener {
         Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "MinecraftParty by Whirss");
         Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Version " + currentversion + " (Spigot " + Bukkit.getBukkitVersion() + " )");
         Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "----------------------------------");
+        
+        Bukkit.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 		
         
 		registerConfig();
@@ -806,7 +808,7 @@ public class Main extends JavaPlugin implements Listener {
 					p.getInventory().clear();
 					p.updateInventory();
 					//updateScoreboardOUTGAME(pl);
-					if(bungee) {
+					/*if(bungee) {
 						if(connect_hub) {
 							sendServer(p, m.getSettings().getString("settings.plugin.bungee.hub"));
 						}
@@ -814,7 +816,7 @@ public class Main extends JavaPlugin implements Listener {
 							Bukkit.getServer().shutdown();
 							Bukkit.broadcastMessage("hola");
 						}
-					}
+					}*/
 				}else{
 					remove.add(p.getName());
 				}
@@ -1183,15 +1185,14 @@ public class Main extends JavaPlugin implements Listener {
 					}
 				}
 				
-				if(bungee) {
+				/*if(bungee) {
 					if(connect_hub) {
 						sendServer(p, m.getSettings().getString("settings.plugin.bungee.hub"));
 					}
 					if(shutdown) {
 						Bukkit.getServer().shutdown();
-						Bukkit.broadcastMessage("hola");
 					}
-				}
+				}*/
 				
 				if(placeholderapi){
 					p.sendMessage(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', getMessages().getString("messages.game.next_round"))));
@@ -1586,17 +1587,15 @@ public class Main extends JavaPlugin implements Listener {
 		return res;
 	}
 	
-	public void sendServer(Player p, String server){
-        ByteArrayOutputStream b = new ByteArrayOutputStream();
-        DataOutputStream out = new DataOutputStream(b);
- 
-        try {
-            out.writeUTF("Connect");
-            out.writeUTF(server);
-        } catch (IOException eee) {
-            // Fehler
-        }
- 
-        p.sendPluginMessage(this, "BungeeCord", b.toByteArray());
-    }
+	public void sendToServer(Player p, String server) {
+	    ByteArrayOutputStream b = new ByteArrayOutputStream();
+	    DataOutputStream out = new DataOutputStream(b);
+	    try {
+	      out.writeUTF("Connect");
+	      out.writeUTF(server);
+	    } catch (Exception e) {
+	      e.printStackTrace();
+	    } 
+	    p.sendPluginMessage(this, "BungeeCord", b.toByteArray());
+	  }
 }

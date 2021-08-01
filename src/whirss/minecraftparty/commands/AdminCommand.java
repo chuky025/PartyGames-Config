@@ -3,6 +3,7 @@ package whirss.minecraftparty.commands;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -338,7 +339,11 @@ public class AdminCommand implements CommandExecutor {
 						}
 					}
 				}else{
-					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.unknown_command")));
+					if(main.placeholderapi){
+						sender.sendMessage(PlaceholderAPI.setPlaceholders((OfflinePlayer) sender, ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.unknown_command"))));
+					} else {
+						sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.unknown_command")));
+					}
 				}
 			}else{
 				if(sender.hasPermission("minecraftparty.admin.help") || sender.hasPermission("minecraftparty.admin.*")) {
