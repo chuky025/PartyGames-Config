@@ -8,6 +8,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import whirss.minecraftparty.Main;
 import whirss.minecraftparty.Shop;
 
@@ -43,7 +44,11 @@ public class OnPlayerCommand implements Listener {
 					main.minigames.get(main.currentmg).leave(p);
 				}
 				main.players.remove(p.getName());
-				p.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.you_left")));
+				if(main.getSettings().getBoolean("settings.enable_placeholderapi")) {
+					p.sendMessage(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.you_left"))));
+				} else {
+					p.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.you_left")));
+				}
 				if(main.players.size() < main.min_players){
 					Bukkit.getScheduler().runTaskLater(main, new Runnable(){
 						public void run(){
@@ -65,7 +70,11 @@ public class OnPlayerCommand implements Listener {
 					// nothing
 				}else{
 					event.setCancelled(true);
-					event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.ingame_commands")));
+					if(main.getSettings().getBoolean("settings.enable_placeholderapi")) {
+						event.getPlayer().sendMessage(PlaceholderAPI.setPlaceholders(event.getPlayer(), ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.ingame_commands"))));
+					} else {
+						event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.ingame_commands")));
+					}
 				}
 			}
 		}

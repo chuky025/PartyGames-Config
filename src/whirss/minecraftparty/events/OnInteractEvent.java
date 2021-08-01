@@ -13,6 +13,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import whirss.minecraftparty.Main;
 import whirss.minecraftparty.Minigame;
 import whirss.minecraftparty.Shop;
@@ -38,10 +39,18 @@ public class OnInteractEvent implements Listener {
 					final Sign s = (Sign) event.getClickedBlock().getState();
 					if (s.getLine(1).equalsIgnoreCase(ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + "Minecraft" + ChatColor.LIGHT_PURPLE.toString() + ChatColor.BOLD + "Party " + ChatColor.GRAY + "- " + ChatColor.WHITE + "Help")){
 						if(main.players.contains(event.getPlayer().getName())){
-							event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.on_join")));
+							if(main.getSettings().getBoolean("settings.enable_placeholderapi")) {
+								event.getPlayer().sendMessage(PlaceholderAPI.setPlaceholders(event.getPlayer(), ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.on_join"))));
+							} else {
+								event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.on_join")));
+							}
 						}else{
 							if(main.players.size() > main.getSettings().getInt("settings.max_players") - 1){
-								event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.game_full")));
+								if(main.getSettings().getBoolean("settings.enable_placeholderapi")) {
+									event.getPlayer().sendMessage(PlaceholderAPI.setPlaceholders(event.getPlayer(), ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.game_full"))));
+								} else {
+									event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.game_full")));
+								}
 								return;
 							}
 							main.players.add(event.getPlayer().getName());
@@ -50,7 +59,11 @@ public class OnInteractEvent implements Listener {
 								main.pinv.put(event.getPlayer().getName(), event.getPlayer().getInventory().getContents());
 								main.startNew();
 								if(main.min_players > 1){
-									event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.joined_queue").replace("%min_players%", Integer.toString(main.min_players))));
+									if(main.getSettings().getBoolean("settings.enable_placeholderapi")) {
+										event.getPlayer().sendMessage(PlaceholderAPI.setPlaceholders(event.getPlayer(), ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.joined_queue").replace("%min_players%", Integer.toString(main.min_players)))));
+									} else {
+										event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.joined_queue").replace("%min_players%", Integer.toString(main.min_players))));
+									}
 								}
 							}else{ // else: just join the minigame
 								try{
@@ -64,7 +77,11 @@ public class OnInteractEvent implements Listener {
 										}
 									}
 								}catch(Exception e){
-									event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.error")));
+									if(main.getSettings().getBoolean("settings.enable_placeholderapi")) {
+										event.getPlayer().sendMessage(PlaceholderAPI.setPlaceholders(event.getPlayer(), ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.error"))));
+									} else {
+										event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.error")));
+									}
 								}
 							}
 						}
@@ -73,17 +90,19 @@ public class OnInteractEvent implements Listener {
 			}
 		}else if(event.getAction().equals(Action.PHYSICAL)){
 			if(current.name.equalsIgnoreCase("MineField")) {
-				if(event.getClickedBlock().getType() == Material.STONE_PLATE){
-					if(main.players.contains(event.getPlayer().getName())){
-						final Player p = event.getPlayer();
-						p.getWorld().createExplosion(p.getLocation(), 0);
-						Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(main, new Runnable() {
-							@Override
-							public void run() {
-								p.teleport(main.minigames.get(main.currentmg).spawn);
-								event.getClickedBlock().setType(Material.AIR);
-							}
-						}, 5);
+				if(main.ingame_started) {
+					if(event.getClickedBlock().getType() == Material.STONE_PLATE){
+						if(main.players.contains(event.getPlayer().getName())){
+							final Player p = event.getPlayer();
+							p.getWorld().createExplosion(p.getLocation(), 0);
+							Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(main, new Runnable() {
+								@Override
+								public void run() {
+									p.teleport(main.minigames.get(main.currentmg).spawn);
+									event.getClickedBlock().setType(Material.AIR);
+								}
+							}, 5);
+						}
 					}
 				}
 			}

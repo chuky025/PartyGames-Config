@@ -221,7 +221,11 @@ public class AdminCommand implements CommandExecutor {
 							}, 5L);
 						}
 					} else {
-						sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.no_perms")));
+						if(main.getSettings().getBoolean("settings.enable_placeholderapi")) {
+							sender.sendMessage(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.no_perms"))));
+						} else {
+							sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.no_perms")));
+						}
 					}
 				
 				}else if(args[0].equalsIgnoreCase("setlobby")){
@@ -231,9 +235,17 @@ public class AdminCommand implements CommandExecutor {
 						main.getConfig().set("lobby.location.y", p.getLocation().getBlockY());
 						main.getConfig().set("lobby.location.z", p.getLocation().getBlockZ());
 						main.saveConfig();
-						sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.setup.saved_lobby")));
+						if(main.getSettings().getBoolean("settings.enable_placeholderapi")) {
+							sender.sendMessage(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.setup.saved_lobby"))));
+						} else {
+							sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.setup.saved_lobby")));
+						}
 					} else {
-						sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.no_perms")));
+						if(main.getSettings().getBoolean("settings.enable_placeholderapi")) {
+							sender.sendMessage(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.no_perms"))));
+						} else {
+							sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.no_perms")));
+						}
 					}
 				}else if(args[0].equalsIgnoreCase("setcomponent")){
 					// /mp setcomponent [minigame] [component]
@@ -245,11 +257,19 @@ public class AdminCommand implements CommandExecutor {
 							sender.sendMessage(ChatColor.RED + "Use: /mpa setcomponent [game] [component]");
 						}
 					} else {
-						sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.no_perms")));
+						if(main.getSettings().getBoolean("settings.enable_placeholderapi")) {
+							sender.sendMessage(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.no_perms"))));
+						} else {
+							sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.no_perms")));
+						}
 					}
 				}else if(args[0].equalsIgnoreCase("list")){
 					if(sender.hasPermission("minecraftparty.admin.list") || sender.hasPermission("minecraftparty.admin.*")) {
-						sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.minigames_title")));
+						if(main.getSettings().getBoolean("settings.enable_placeholderapi")) {
+							sender.sendMessage(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.minigames_title"))));
+						} else {
+							sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.minigames_title")));
+						}
 						for(Minigame m : main.minigames) {
 							if(m.isEnabled()) {
 								sender.sendMessage(ChatColor.GREEN + m.name);
@@ -258,7 +278,11 @@ public class AdminCommand implements CommandExecutor {
 							}
 						}
 					} else {
-						sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.no_perms")));
+						if(main.getSettings().getBoolean("settings.enable_placeholderapi")) {
+							sender.sendMessage(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.no_perms"))));
+						} else {
+							sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.no_perms")));
+						}
 					}
 				}else if(args[0].equalsIgnoreCase("reload")){
 					if(sender.hasPermission("minecraftparty.admin.reload") || sender.hasPermission("minecraftparty.admin.*")) {
@@ -273,7 +297,11 @@ public class AdminCommand implements CommandExecutor {
 						main.reloadTitles();
 						sender.sendMessage(main.getMessages().getString("messages.setup.reload"));
 					} else {
-						sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.no_perms")));
+						if(main.getSettings().getBoolean("settings.enable_placeholderapi")) {
+							sender.sendMessage(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.no_perms"))));
+						} else {
+							sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.no_perms")));
+						}
 					}
 				}else if(args[0].equalsIgnoreCase("enable")){
 					if(sender.hasPermission("minecraftparty.admin.enable")) {
@@ -283,7 +311,11 @@ public class AdminCommand implements CommandExecutor {
 							sender.sendMessage(ChatColor.RED + "Use: /mpa enable [colormatch, spleef, minefield, jumpnrun, deadend, redalert, lastarcherstanding, sheepfreenzy, smokemonster, slapfight]");
 						}
 					} else {
-						sender.sendMessage(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.no_perms"))));
+						if(main.getSettings().getBoolean("settings.enable_placeholderapi")) {
+							sender.sendMessage(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.no_perms"))));
+						} else {
+							sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.no_perms")));
+						}
 					}
 				}else if(args[0].equalsIgnoreCase("disable")){
 					if(sender.hasPermission("minecraftparty.admin.disable") || sender.hasPermission("minecraftparty.admin.*")) {
@@ -293,7 +325,11 @@ public class AdminCommand implements CommandExecutor {
 							sender.sendMessage(ChatColor.RED + "Use: /mpa disable <colormatch/spleef/minefield/jumpnrun/deadend/redalert/lastarcherstanding/sheepfreenzy/smokemonster/slapfight>");
 						}
 					} else {
-						sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.no_perms")));
+						if(main.getSettings().getBoolean("settings.enable_placeholderapi")) {
+							sender.sendMessage(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.no_perms"))));
+						} else {
+							sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.no_perms")));
+						}
 					}
 				}else{
 					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.unknown_command")));

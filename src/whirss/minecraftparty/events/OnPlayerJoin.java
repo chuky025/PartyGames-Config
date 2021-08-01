@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import whirss.minecraftparty.Main;
 
 public class OnPlayerJoin implements Listener {
@@ -45,11 +46,19 @@ public class OnPlayerJoin implements Listener {
 		if (!main.getSettings().getBoolean("settings.game-on-join")) return;
 
 		if(main.players.contains(event.getPlayer().getName())){
-			p.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.alredy_ingame")));
+			if(main.getSettings().getBoolean("settings.enable_placeholderapi")) {
+				p.sendMessage(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.alredy_ingame"))));
+			} else {
+				p.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.alredy_ingame")));
+			}
 			return;
 		}
 		main.players.add(p.getName());
-		event.setJoinMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.player_joined").replace("&", "§")));
+		if(main.getSettings().getBoolean("settings.enable_placeholderapi")) {
+			event.setJoinMessage(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.player_joined"))));
+		} else {
+			event.setJoinMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.player_joined")));
+		}
 
 
 		Bukkit.getScheduler().scheduleSyncDelayedTask(main, new Runnable() {
@@ -69,7 +78,11 @@ public class OnPlayerJoin implements Listener {
 						p.teleport(main.minigames.get(main.currentmg).spawn);
 					}
 				} catch (Exception ex) {
-					p.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.error")));
+					if(main.getSettings().getBoolean("settings.enable_placeholderapi")) {
+						p.sendMessage(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.error"))));
+					} else {
+						p.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.other.error")));
+					}
 				}
 			}
 		}, 6);

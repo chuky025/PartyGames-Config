@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerToggleFlightEvent;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import whirss.minecraftparty.Main;
 
 public class OnFlightAttempt implements Listener {
@@ -38,7 +39,12 @@ public class OnFlightAttempt implements Listener {
 			        	}
 			        }, 20 * 10);
 	    		}else{
-	    			p.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.double_jump")));
+	    			if(main.getSettings().getBoolean("settings.enable_placeholderapi")) {
+	    				p.sendMessage(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.double_jump"))));
+					} else {
+						p.sendMessage(ChatColor.translateAlternateColorCodes('&', main.getMessages().getString("messages.game.double_jump")));
+					}
+	    			
 	    			p.setAllowFlight(false);
 			        p.setFlying(false);
 			        event.setCancelled(true);

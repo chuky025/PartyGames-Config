@@ -20,7 +20,7 @@ public class OnBlockBreak implements Listener {
 	public void onBlockBreak(BlockBreakEvent event){
 		if(main.players.contains(event.getPlayer().getName())){
 			//SPLEEF
-			if(main.	ingame_started){
+			if(main.ingame_started){
 				if(event.getBlock().getType() == Material.SNOW_BLOCK){
 					event.getPlayer().getInventory().addItem(new ItemStack(Material.SNOW_BALL, 2));
 					event.getPlayer().updateInventory();
