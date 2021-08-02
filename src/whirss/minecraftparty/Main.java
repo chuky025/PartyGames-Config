@@ -207,6 +207,9 @@ public class Main extends JavaPlugin implements Listener {
         
         Bukkit.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         
+        
+        registerColorMatch();
+        
 		registerConfig();
 		registerSettings();
 		registerMessages();
@@ -365,7 +368,7 @@ public class Main extends JavaPlugin implements Listener {
 		settings = YamlConfiguration.loadConfiguration(settingsFile);
 		Reader defConfigStream;
 		try{
-			defConfigStream = new InputStreamReader(this.getResource("settings.yml"),"UTF8");
+			defConfigStream = new InputStreamReader(this.getResource("files/settings.yml"),"UTF8");
 			if(defConfigStream != null){
 				YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
 				settings.setDefaults(defConfig);
@@ -415,7 +418,7 @@ public class Main extends JavaPlugin implements Listener {
 		messages = YamlConfiguration.loadConfiguration(messagesFile);
 		Reader defConfigStream;
 		try{
-			defConfigStream = new InputStreamReader(this.getResource("messages.yml"),"UTF8");
+			defConfigStream = new InputStreamReader(this.getResource("files/messages.yml"),"UTF8");
 			if(defConfigStream != null){
 				YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
 				messages.setDefaults(defConfig);
@@ -465,7 +468,7 @@ public class Main extends JavaPlugin implements Listener {
 		scoreboard = YamlConfiguration.loadConfiguration(scoreboardFile);
 		Reader defConfigStream;
 		try{
-			defConfigStream = new InputStreamReader(this.getResource("scoreboard.yml"),"UTF8");
+			defConfigStream = new InputStreamReader(this.getResource("files/scoreboard.yml"),"UTF8");
 			if(defConfigStream != null){
 				YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
 				scoreboard.setDefaults(defConfig);
@@ -515,7 +518,7 @@ public class Main extends JavaPlugin implements Listener {
 		shop = YamlConfiguration.loadConfiguration(shopFile);
 		Reader defConfigStream;
 		try{
-			defConfigStream = new InputStreamReader(this.getResource("shop.yml"),"UTF8");
+			defConfigStream = new InputStreamReader(this.getResource("files/shop.yml"),"UTF8");
 			if(defConfigStream != null){
 				YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
 				shop.setDefaults(defConfig);
@@ -565,7 +568,7 @@ public class Main extends JavaPlugin implements Listener {
 		titles = YamlConfiguration.loadConfiguration(titlesFile);
 		Reader defConfigStream;
 		try{
-			defConfigStream = new InputStreamReader(this.getResource("titles.yml"),"UTF8");
+			defConfigStream = new InputStreamReader(this.getResource("files/titles.yml"),"UTF8");
 			if(defConfigStream != null){
 				YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
 				titles.setDefaults(defConfig);
@@ -615,7 +618,7 @@ public class Main extends JavaPlugin implements Listener {
 		mysql = YamlConfiguration.loadConfiguration(mysqlFile);
 		Reader defConfigStream;
 		try{
-			defConfigStream = new InputStreamReader(this.getResource("mysql.yml"),"UTF8");
+			defConfigStream = new InputStreamReader(this.getResource("files/mysql.yml"),"UTF8");
 			if(defConfigStream != null){
 				YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
 				mysql.setDefaults(defConfig);
@@ -667,7 +670,7 @@ public class Main extends JavaPlugin implements Listener {
 		colormatch = YamlConfiguration.loadConfiguration(colormatchFile);
 		Reader defConfigStream;
 		try{
-			defConfigStream = new InputStreamReader(this.getResource("colormatch.yml"),"UTF8");
+			defConfigStream = new InputStreamReader(this.getResource("files/files/colormatch.yml"),"UTF8");
 			if(defConfigStream != null){
 				YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
 				colormatch.setDefaults(defConfig);
@@ -715,7 +718,7 @@ public class Main extends JavaPlugin implements Listener {
 		deadend = YamlConfiguration.loadConfiguration(deadendFile);
 		Reader defConfigStream;
 		try{
-			defConfigStream = new InputStreamReader(this.getResource("deadend.yml"),"UTF8");
+			defConfigStream = new InputStreamReader(this.getResource("files/deadend.yml"),"UTF8");
 			if(defConfigStream != null){
 				YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
 				deadend.setDefaults(defConfig);
@@ -763,7 +766,7 @@ public class Main extends JavaPlugin implements Listener {
 		redalert = YamlConfiguration.loadConfiguration(redalertFile);
 		Reader defConfigStream;
 		try{
-			defConfigStream = new InputStreamReader(this.getResource("redalert.yml"),"UTF8");
+			defConfigStream = new InputStreamReader(this.getResource("files/redalert.yml"),"UTF8");
 			if(defConfigStream != null){
 				YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
 				redalert.setDefaults(defConfig);
@@ -811,7 +814,7 @@ public class Main extends JavaPlugin implements Listener {
 		jumpnrun = YamlConfiguration.loadConfiguration(jumpnrunFile);
 		Reader defConfigStream;
 		try{
-			defConfigStream = new InputStreamReader(this.getResource("jumpnrun.yml"),"UTF8");
+			defConfigStream = new InputStreamReader(this.getResource("files/jumpnrun.yml"),"UTF8");
 			if(defConfigStream != null){
 				YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
 				jumpnrun.setDefaults(defConfig);
@@ -859,7 +862,7 @@ public class Main extends JavaPlugin implements Listener {
 		lastarcherstanding = YamlConfiguration.loadConfiguration(lastarcherstandingFile);
 		Reader defConfigStream;
 		try{
-			defConfigStream = new InputStreamReader(this.getResource("lastarcherstanding.yml"),"UTF8");
+			defConfigStream = new InputStreamReader(this.getResource("files/lastarcherstanding.yml"),"UTF8");
 			if(defConfigStream != null){
 				YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
 				lastarcherstanding.setDefaults(defConfig);
@@ -907,7 +910,7 @@ public class Main extends JavaPlugin implements Listener {
 		minefield = YamlConfiguration.loadConfiguration(minefieldFile);
 		Reader defConfigStream;
 		try{
-			defConfigStream = new InputStreamReader(this.getResource("minefield.yml"),"UTF8");
+			defConfigStream = new InputStreamReader(this.getResource("files/minefield.yml"),"UTF8");
 			if(defConfigStream != null){
 				YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
 				minefield.setDefaults(defConfig);
@@ -955,7 +958,7 @@ public class Main extends JavaPlugin implements Listener {
 		sheepfreenzy = YamlConfiguration.loadConfiguration(sheepfreenzyFile);
 		Reader defConfigStream;
 		try{
-			defConfigStream = new InputStreamReader(this.getResource("sheepfreenzy.yml"),"UTF8");
+			defConfigStream = new InputStreamReader(this.getResource("files/sheepfreenzy.yml"),"UTF8");
 			if(defConfigStream != null){
 				YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
 				sheepfreenzy.setDefaults(defConfig);
@@ -1003,7 +1006,7 @@ public class Main extends JavaPlugin implements Listener {
 		slapfight = YamlConfiguration.loadConfiguration(slapfightFile);
 		Reader defConfigStream;
 		try{
-			defConfigStream = new InputStreamReader(this.getResource("slapfight.yml"),"UTF8");
+			defConfigStream = new InputStreamReader(this.getResource("files/slapfight.yml"),"UTF8");
 			if(defConfigStream != null){
 				YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
 				slapfight.setDefaults(defConfig);
@@ -1051,7 +1054,7 @@ public class Main extends JavaPlugin implements Listener {
 		smokemonster = YamlConfiguration.loadConfiguration(smokemonsterFile);
 		Reader defConfigStream;
 		try{
-			defConfigStream = new InputStreamReader(this.getResource("smokemonster.yml"),"UTF8");
+			defConfigStream = new InputStreamReader(this.getResource("files/smokemonster.yml"),"UTF8");
 			if(defConfigStream != null){
 				YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
 				smokemonster.setDefaults(defConfig);
@@ -1099,7 +1102,7 @@ public class Main extends JavaPlugin implements Listener {
 		spleef = YamlConfiguration.loadConfiguration(spleefFile);
 		Reader defConfigStream;
 		try{
-			defConfigStream = new InputStreamReader(this.getResource("spleef.yml"),"UTF8");
+			defConfigStream = new InputStreamReader(this.getResource("files/spleef.yml"),"UTF8");
 			if(defConfigStream != null){
 				YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
 				spleef.setDefaults(defConfig);
