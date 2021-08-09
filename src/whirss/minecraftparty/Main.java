@@ -116,6 +116,7 @@ public class Main extends JavaPlugin implements Listener {
 	
 	
 	//in game
+	public String your_place = null;
 	public String place1 = null;
 	public String place2 = null;
 	public String place3 = null;
@@ -2041,6 +2042,8 @@ public class Main extends JavaPlugin implements Listener {
 	
 	public void sendPlace(int count, Player p){
 		String place = Integer.toString(count + 1);
+		your_place = place;
+		
 		if(count == 0){
 			place1 = p.getName();
 		}else if(count == 1){
@@ -2066,14 +2069,16 @@ public class Main extends JavaPlugin implements Listener {
 						.replace("%place_2%", String.valueOf(place2))
 						.replace("%place_3%", String.valueOf(place3))
 						.replace("%credits_earned%", Integer.valueOf(reward)+"")
-						.replace("%stars_earned%", "0")));
+						.replace("%stars_earned%", "0")
+						.replace("%place_player%", your_place)));
 			} else {
 				p.sendMessage(ChatColor.translateAlternateColorCodes('&', message)
 						.replace("%place_1%", String.valueOf(place1))
 						.replace("%place_2%", String.valueOf(place2))
 						.replace("%place_3%", String.valueOf(place3))
 						.replace("%credits_earned%", Integer.valueOf(reward)+"")
-						.replace("%stars_earned%", "0"));
+						.replace("%stars_earned%", "0")
+						.replace("%place_player%", your_place));
 			}
 		}
 	}

@@ -85,6 +85,7 @@ public class Minigame {
 					for(String p_ : m.players){
 						Player p = Bukkit.getPlayerExact(p_);
 						if(p.isOnline()){
+							m.your_place = null;
 							m.place1 = null;
 							m.place2 = null;
 							m.place3 = null;
