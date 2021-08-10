@@ -334,11 +334,11 @@ public class Main extends JavaPlugin implements Listener {
 	}
 	
 	private boolean setupEconomy() {
-        if (getServer().getPluginManager().getPlugin("Vault") == null) {
+        if (getServer().getPluginManager().getPlugin("Vault").equals(null)) {
             return false;
         }
         RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
-        if (rsp == null) {
+        if (rsp.equals(null)) {
             return false;
         }
         econ = rsp.getProvider();
@@ -393,14 +393,14 @@ public class Main extends JavaPlugin implements Listener {
 	
 	//settings.yml:
 	public FileConfiguration getSettings() {
-		if(settings == null) {
+		if(settings.equals(null)) {
 			reloadSettings();
 		}
 		return settings;
 	}
 	
 	public void reloadSettings(){
-		if(settings == null){
+		if(settings.equals(null)){
 			settingsFile = new File(getDataFolder(),"settings.yml");
 		}
 		settings = YamlConfiguration.loadConfiguration(settingsFile);
@@ -443,14 +443,14 @@ public class Main extends JavaPlugin implements Listener {
 	
 	//messages.yml
 	public FileConfiguration getMessages() {
-		if(messages == null) {
+		if(messages.equals(null)) {
 			reloadMessages();
 		}
 		return messages;
 	}
 	
 	public void reloadMessages(){
-		if(messages == null){
+		if(messages.equals(null)){
 			messagesFile = new File(getDataFolder(),"messages.yml");
 		}
 		messages = YamlConfiguration.loadConfiguration(messagesFile);
@@ -493,14 +493,14 @@ public class Main extends JavaPlugin implements Listener {
 	
 	//scoreboard.yml
 	public FileConfiguration getScoreboard() {
-		if(scoreboard == null) {
+		if(scoreboard.equals(null)) {
 			reloadScoreboard();
 		}
 		return scoreboard;
 	}
 	
 	public void reloadScoreboard(){
-		if(scoreboard == null){
+		if(scoreboard.equals(null)){
 			scoreboardFile = new File(getDataFolder(),"scoreboard.yml");
 		}
 		scoreboard = YamlConfiguration.loadConfiguration(scoreboardFile);
@@ -543,14 +543,14 @@ public class Main extends JavaPlugin implements Listener {
 	
 	//shop.yml
 	public FileConfiguration getShop() {
-		if(shop == null) {
+		if(shop.equals(null)) {
 			reloadShop();
 		}
 		return shop;
 	}
 	
 	public void reloadShop(){
-		if(shop == null){
+		if(shop.equals(null)){
 			shopFile = new File(getDataFolder(),"shop.yml");
 		}
 		shop = YamlConfiguration.loadConfiguration(shopFile);
@@ -593,14 +593,14 @@ public class Main extends JavaPlugin implements Listener {
 	
 	//titles.yml
 	public FileConfiguration getTitles() {
-		if(titles == null) {
+		if(titles.equals(null)) {
 			reloadTitles();
 		}
 		return titles;
 	}
 	
 	public void reloadTitles(){
-		if(titles == null){
+		if(titles.equals(null)){
 			titlesFile = new File(getDataFolder(),"titles.yml");
 		}
 		titles = YamlConfiguration.loadConfiguration(titlesFile);
@@ -643,14 +643,14 @@ public class Main extends JavaPlugin implements Listener {
 	
 	//mysql.yml
 	public FileConfiguration getMysql() {
-		if(mysql == null) {
+		if(mysql.equals(null)) {
 			reloadMysql();
 		}
 		return mysql;
 	}
 	
 	public void reloadMysql(){
-		if(mysql == null){
+		if(mysql.equals(null)){
 			mysqlFile = new File(getDataFolder(),"mysql.yml");
 		}
 		mysql = YamlConfiguration.loadConfiguration(mysqlFile);
@@ -695,14 +695,14 @@ public class Main extends JavaPlugin implements Listener {
 	//minigames folder
 	//colormatch
 	public FileConfiguration getColorMatch() {
-		if(colormatch == null) {
+		if(colormatch.equals(null)) {
 			reloadColorMatch();
 		}
 		return colormatch;
 	}
 	
 	public void reloadColorMatch(){
-		if(colormatch == null){
+		if(colormatch.equals(null)){
 			colormatchFile = new File(getDataFolder()+"/minigames","colormatch.yml");
 		}
 		colormatch = YamlConfiguration.loadConfiguration(colormatchFile);
@@ -743,14 +743,14 @@ public class Main extends JavaPlugin implements Listener {
 	
 	//deadend
 	public FileConfiguration getDeadEnd() {
-		if(deadend == null) {
+		if(deadend.equals(null)) {
 			reloadDeadEnd();
 		}
 		return deadend;
 	}
 	
 	public void reloadDeadEnd(){
-		if(deadend == null){
+		if(deadend.equals(null)){
 			deadendFile = new File(getDataFolder()+"/minigames","deadend.yml");
 		}
 		deadend = YamlConfiguration.loadConfiguration(deadendFile);
@@ -791,14 +791,14 @@ public class Main extends JavaPlugin implements Listener {
 	
 	//redalert
 	public FileConfiguration getRedAlert() {
-		if(redalert == null) {
+		if(redalert.equals(null)) {
 			reloadRedAlert();
 		}
 		return redalert;
 	}
 	
 	public void reloadRedAlert(){
-		if(redalert == null){
+		if(redalert.equals(null)){
 			redalertFile = new File(getDataFolder()+"/minigames","redalert.yml");
 		}
 		redalert = YamlConfiguration.loadConfiguration(redalertFile);
@@ -839,14 +839,14 @@ public class Main extends JavaPlugin implements Listener {
 	
 	//jumpnrun
 	public FileConfiguration getJumpnRun() {
-		if(jumpnrun == null) {
+		if(jumpnrun.equals(null)) {
 			reloadJumpnRun();
 		}
 		return jumpnrun;
 	}
 	
 	public void reloadJumpnRun(){
-		if(jumpnrun == null){
+		if(jumpnrun.equals(null)){
 			jumpnrunFile = new File(getDataFolder()+"/minigames","jumpnrun.yml");
 		}
 		jumpnrun = YamlConfiguration.loadConfiguration(jumpnrunFile);
@@ -887,14 +887,14 @@ public class Main extends JavaPlugin implements Listener {
 	
 	//lastarcherstanding
 	public FileConfiguration getLastArcherStanding() {
-		if(lastarcherstanding == null) {
+		if(lastarcherstanding.equals(null)) {
 			reloadLastArcherStanding();
 		}
 		return lastarcherstanding;
 	}
 	
 	public void reloadLastArcherStanding(){
-		if(lastarcherstanding == null){
+		if(lastarcherstanding.equals(null)){
 			lastarcherstandingFile = new File(getDataFolder()+"/minigames","lastarcherstanding.yml");
 		}
 		lastarcherstanding = YamlConfiguration.loadConfiguration(lastarcherstandingFile);
@@ -935,14 +935,14 @@ public class Main extends JavaPlugin implements Listener {
 	
 	//minefield
 	public FileConfiguration getMineField() {
-		if(minefield == null) {
+		if(minefield.equals(null)) {
 			reloadMineField();
 		}
 		return minefield;
 	}
 	
 	public void reloadMineField(){
-		if(minefield == null){
+		if(minefield.equals(null)){
 			minefieldFile = new File(getDataFolder()+"/minigames","minefield.yml");
 		}
 		minefield = YamlConfiguration.loadConfiguration(minefieldFile);
@@ -983,14 +983,14 @@ public class Main extends JavaPlugin implements Listener {
 	
 	//sheepfreenzy
 	public FileConfiguration getSheepFreenzy() {
-		if(sheepfreenzy == null) {
+		if(sheepfreenzy.equals(null)) {
 			reloadSheepFreenzy();
 		}
 		return sheepfreenzy;
 	}
 	
 	public void reloadSheepFreenzy(){
-		if(sheepfreenzy == null){
+		if(sheepfreenzy.equals(null)){
 			sheepfreenzyFile = new File(getDataFolder()+"/minigames","sheepfreenzy.yml");
 		}
 		sheepfreenzy = YamlConfiguration.loadConfiguration(sheepfreenzyFile);
@@ -1031,14 +1031,14 @@ public class Main extends JavaPlugin implements Listener {
 	
 	//slapfight
 	public FileConfiguration getSlapFight() {
-		if(slapfight == null) {
+		if(slapfight.equals(null)) {
 			reloadSlapFight();
 		}
 		return slapfight;
 	}
 	
 	public void reloadSlapFight(){
-		if(slapfight == null){
+		if(slapfight.equals(null)){
 			slapfightFile = new File(getDataFolder()+"/minigames","slapfight.yml");
 		}
 		slapfight = YamlConfiguration.loadConfiguration(slapfightFile);
@@ -1079,14 +1079,14 @@ public class Main extends JavaPlugin implements Listener {
 	
 	//smokemonster
 	public FileConfiguration getSmokeMonster() {
-		if(smokemonster == null) {
+		if(smokemonster.equals(null)) {
 			reloadSmokeMonster();
 		}
 		return smokemonster;
 	}
 	
 	public void reloadSmokeMonster(){
-		if(smokemonster == null){
+		if(smokemonster.equals(null)){
 			smokemonsterFile = new File(getDataFolder()+"/minigames","smokemonster.yml");
 		}
 		smokemonster = YamlConfiguration.loadConfiguration(smokemonsterFile);
@@ -1127,14 +1127,14 @@ public class Main extends JavaPlugin implements Listener {
 	
 	//spleef
 	public FileConfiguration getSpleef() {
-		if(spleef == null) {
+		if(spleef.equals(null)) {
 			reloadSpleef();
 		}
 		return spleef;
 	}
 	
 	public void reloadSpleef(){
-		if(spleef == null){
+		if(spleef.equals(null)){
 			spleefFile = new File(getDataFolder()+"/minigames","spleef.yml");
 		}
 		spleef = YamlConfiguration.loadConfiguration(spleefFile);
@@ -1192,7 +1192,7 @@ public class Main extends JavaPlugin implements Listener {
 	}*/
 
 	public void win(Player p){
-		if(p == null){
+		if(p.equals(null)){
 			getLogger().severe("Could not resolve winner: " + Integer.toString(currentmg));
 			return;
 		}
@@ -1827,34 +1827,34 @@ public class Main extends JavaPlugin implements Listener {
 	public Location getComponentForMinigame(String minigame, String component, String count){
 		if(isValidMinigame(minigame)){
 			String base = "minigame." + "data." + component + count;
-			if(minigame == "ColorMatch") {
+			if(minigame.equals("ColorMatch")) {
 				return new Location(Bukkit.getWorld(getColorMatch().getString(base + ".world")), getColorMatch().getInt(base + ".location.x"), getColorMatch().getInt(base + ".location.y"), getColorMatch().getInt(base + ".location.z"));
 			}
-			if(minigame == "DeadEnd") {
+			if(minigame.equals("DeadEnd")) {
 				return new Location(Bukkit.getWorld(getDeadEnd().getString(base + ".world")), getDeadEnd().getInt(base + ".location.x"), getDeadEnd().getInt(base + ".location.y"), getDeadEnd().getInt(base + ".location.z"));
 			}
-			if(minigame == "JumpnRun") {
+			if(minigame.equals("JumpnRun")) {
 				return new Location(Bukkit.getWorld(getJumpnRun().getString(base + ".world")), getJumpnRun().getInt(base + ".location.x"), getJumpnRun().getInt(base + ".location.y"), getJumpnRun().getInt(base + ".location.z"));
 			}
-			if(minigame == "LastArcherStanding") {
+			if(minigame.equals("LastArcherStanding")) {
 				return new Location(Bukkit.getWorld(getLastArcherStanding().getString(base + ".world")), getLastArcherStanding().getInt(base + ".location.x"), getLastArcherStanding().getInt(base + ".location.y"), getLastArcherStanding().getInt(base + ".location.z"));
 			}
-			if(minigame == "MineField") {
+			if(minigame.equals("MineField")) {
 				return new Location(Bukkit.getWorld(getMineField().getString(base + ".world")), getMineField().getInt(base + ".location.x"), getMineField().getInt(base + ".location.y"), getMineField().getInt(base + ".location.z"));
 			}
-			if(minigame == "RedAlert") {
+			if(minigame.equals("RedAlert")) {
 				return new Location(Bukkit.getWorld(getRedAlert().getString(base + ".world")), getRedAlert().getInt(base + ".location.x"), getRedAlert().getInt(base + ".location.y"), getRedAlert().getInt(base + ".location.z"));
 			}
-			if(minigame == "SheepFreenzy") {
+			if(minigame.equals("SheepFreenzy")) {
 				return new Location(Bukkit.getWorld(getSheepFreenzy().getString(base + ".world")), getSheepFreenzy().getInt(base + ".location.x"), getSheepFreenzy().getInt(base + ".location.y"), getSheepFreenzy().getInt(base + ".location.z"));
 			}
-			if(minigame == "SlapFight") {
+			if(minigame.equals("SlapFight")) {
 				return new Location(Bukkit.getWorld(getSlapFight().getString(base + ".world")), getSlapFight().getInt(base + ".location.x"), getSlapFight().getInt(base + ".location.y"), getSlapFight().getInt(base + ".location.z"));
 			}
-			if(minigame == "SmokeMonster") {
+			if(minigame.equals("SmokeMonster")) {
 				return new Location(Bukkit.getWorld(getSmokeMonster().getString(base + ".world")), getSmokeMonster().getInt(base + ".location.x"), getSmokeMonster().getInt(base + ".location.y"), getSmokeMonster().getInt(base + ".location.z"));
 			}
-			if(minigame == "Spleef") {
+			if(minigame.equals("Spleef")) {
 				return new Location(Bukkit.getWorld(getSpleef().getString(base + ".world")), getSpleef().getInt(base + ".location.x"), getSpleef().getInt(base + ".location.y"), getSpleef().getInt(base + ".location.z"));
 			}
 		}
@@ -1864,34 +1864,34 @@ public class Main extends JavaPlugin implements Listener {
 	public Location getComponentForMinigame(String minigame, String component){
 		if(isValidMinigame(minigame)){
 			String base = "minigame." + "data." + component;
-			if(minigame == "ColorMatch") {
+			if(minigame.equals("ColorMatch")) {
 				return new Location(Bukkit.getWorld(getColorMatch().getString(base + ".world")), getColorMatch().getInt(base + ".location.x"), getColorMatch().getInt(base + ".location.y"), getColorMatch().getInt(base + ".location.z"));
 			}
-			if(minigame == "DeadEnd") {
+			if(minigame.equals("DeadEnd")) {
 				return new Location(Bukkit.getWorld(getDeadEnd().getString(base + ".world")), getDeadEnd().getInt(base + ".location.x"), getDeadEnd().getInt(base + ".location.y"), getDeadEnd().getInt(base + ".location.z"));
 			}
-			if(minigame == "JumpnRun") {
+			if(minigame.equals("JumpnRun")) {
 				return new Location(Bukkit.getWorld(getJumpnRun().getString(base + ".world")), getJumpnRun().getInt(base + ".location.x"), getJumpnRun().getInt(base + ".location.y"), getJumpnRun().getInt(base + ".location.z"));
 			}
-			if(minigame == "LastArcherStanding") {
+			if(minigame.equals("LastArcherStanding")) {
 				return new Location(Bukkit.getWorld(getLastArcherStanding().getString(base + ".world")), getLastArcherStanding().getInt(base + ".location.x"), getLastArcherStanding().getInt(base + ".location.y"), getLastArcherStanding().getInt(base + ".location.z"));
 			}
-			if(minigame == "MineField") {
+			if(minigame.equals("MineField")) {
 				return new Location(Bukkit.getWorld(getMineField().getString(base + ".world")), getMineField().getInt(base + ".location.x"), getMineField().getInt(base + ".location.y"), getMineField().getInt(base + ".location.z"));
 			}
-			if(minigame == "RedAlert") {
+			if(minigame.equals("RedAlert")) {
 				return new Location(Bukkit.getWorld(getRedAlert().getString(base + ".world")), getRedAlert().getInt(base + ".location.x"), getRedAlert().getInt(base + ".location.y"), getRedAlert().getInt(base + ".location.z"));
 			}
-			if(minigame == "SheepFreenzy") {
+			if(minigame.equals("SheepFreenzy")) {
 				return new Location(Bukkit.getWorld(getSheepFreenzy().getString(base + ".world")), getSheepFreenzy().getInt(base + ".location.x"), getSheepFreenzy().getInt(base + ".location.y"), getSheepFreenzy().getInt(base + ".location.z"));
 			}
-			if(minigame == "SlapFight") {
+			if(minigame.equals("SlapFight")) {
 				return new Location(Bukkit.getWorld(getSlapFight().getString(base + ".world")), getSlapFight().getInt(base + ".location.x"), getSlapFight().getInt(base + ".location.y"), getSlapFight().getInt(base + ".location.z"));
 			}
-			if(minigame == "SmokeMonster") {
+			if(minigame.equals("SmokeMonster")) {
 				return new Location(Bukkit.getWorld(getSmokeMonster().getString(base + ".world")), getSmokeMonster().getInt(base + ".location.x"), getSmokeMonster().getInt(base + ".location.y"), getSmokeMonster().getInt(base + ".location.z"));
 			}
-			if(minigame == "Spleef") {
+			if(minigame.equals("Spleef")) {
 				return new Location(Bukkit.getWorld(getSpleef().getString(base + ".world")), getSpleef().getInt(base + ".location.x"), getSpleef().getInt(base + ".location.y"), getSpleef().getInt(base + ".location.z"));
 			}
 		}
@@ -1900,70 +1900,70 @@ public class Main extends JavaPlugin implements Listener {
 
 	public void saveComponentForMinigame(String minigame, String component, Location comploc){
 		String base = "minigame." + "data." + component;
-		if(minigame == "ColorMatch") {
+		if(minigame.equals("ColorMatch")) {
 			getColorMatch().set(base + ".world", comploc.getWorld().getName());
 			getColorMatch().set(base + ".location.x", comploc.getBlockX());
 			getColorMatch().set(base + ".location.y", comploc.getBlockY());
 			getColorMatch().set(base + ".location.z", comploc.getBlockZ());
 			saveColorMatch();
 		}
-		if(minigame == "DeadEnd") {
+		if(minigame.equals("DeadEnd")) {
 			getDeadEnd().set(base + ".world", comploc.getWorld().getName());
 			getDeadEnd().set(base + ".location.x", comploc.getBlockX());
 			getDeadEnd().set(base + ".location.y", comploc.getBlockY());
 			getDeadEnd().set(base + ".location.z", comploc.getBlockZ());
 			saveDeadEnd();
 		}
-		if(minigame == "JumpnRun") {
+		if(minigame.equals("JumpnRun")) {
 			getJumpnRun().set(base + ".world", comploc.getWorld().getName());
 			getJumpnRun().set(base + ".location.x", comploc.getBlockX());
 			getJumpnRun().set(base + ".location.y", comploc.getBlockY());
 			getJumpnRun().set(base + ".location.z", comploc.getBlockZ());
 			saveJumpnRun();
 		}
-		if(minigame == "LastArcherStanding") {
+		if(minigame.equals("LastArcherStanding")) {
 			getLastArcherStanding().set(base + ".world", comploc.getWorld().getName());
 			getLastArcherStanding().set(base + ".location.x", comploc.getBlockX());
 			getLastArcherStanding().set(base + ".location.y", comploc.getBlockY());
 			getLastArcherStanding().set(base + ".location.z", comploc.getBlockZ());
 			saveLastArcherStanding();
 		}
-		if(minigame == "MineField") {
+		if(minigame.equals("MineField")) {
 			getMineField().set(base + ".world", comploc.getWorld().getName());
 			getMineField().set(base + ".location.x", comploc.getBlockX());
 			getMineField().set(base + ".location.y", comploc.getBlockY());
 			getMineField().set(base + ".location.z", comploc.getBlockZ());
 			saveMineField();
 		}
-		if(minigame == "RedAlert") {
+		if(minigame.equals("RedAlert")) {
 			getRedAlert().set(base + ".world", comploc.getWorld().getName());
 			getRedAlert().set(base + ".location.x", comploc.getBlockX());
 			getRedAlert().set(base + ".location.y", comploc.getBlockY());
 			getRedAlert().set(base + ".location.z", comploc.getBlockZ());
 			saveRedAlert();
 		}
-		if(minigame == "SheepFreenzy") {
+		if(minigame.equals("SheepFreenzy")) {
 			getSheepFreenzy().set(base + ".world", comploc.getWorld().getName());
 			getSheepFreenzy().set(base + ".location.x", comploc.getBlockX());
 			getSheepFreenzy().set(base + ".location.y", comploc.getBlockY());
 			getSheepFreenzy().set(base + ".location.z", comploc.getBlockZ());
 			saveSheepFreenzy();
 		}
-		if(minigame == "SlapFight") {
+		if(minigame.equals("SlapFight")) {
 			getSlapFight().set(base + ".world", comploc.getWorld().getName());
 			getSlapFight().set(base + ".location.x", comploc.getBlockX());
 			getSlapFight().set(base + ".location.y", comploc.getBlockY());
 			getSlapFight().set(base + ".location.z", comploc.getBlockZ());
 			saveSlapFight();
 		}
-		if(minigame == "SmokeMonster") {
+		if(minigame.equals("SmokeMonster")) {
 			getSmokeMonster().set(base + ".world", comploc.getWorld().getName());
 			getSmokeMonster().set(base + ".location.x", comploc.getBlockX());
 			getSmokeMonster().set(base + ".location.y", comploc.getBlockY());
 			getSmokeMonster().set(base + ".location.z", comploc.getBlockZ());
 			saveSmokeMonster();
 		}
-		if(minigame == "Spleef") {
+		if(minigame.equals("Spleef")) {
 			getSpleef().set(base + ".world", comploc.getWorld().getName());
 			getSpleef().set(base + ".location.x", comploc.getBlockX());
 			getSpleef().set(base + ".location.y", comploc.getBlockY());
@@ -1973,52 +1973,52 @@ public class Main extends JavaPlugin implements Listener {
 	}
 
 	public boolean isValidMinigame(String minigame){
-		if(minigame == "ColorMatch") {
+		if(minigame.equals("ColorMatch")) {
 			if(getColorMatch().isSet("minigame." + "data") && getColorMatch().isSet("minigame." + "data" + ".lobby") && getColorMatch().isSet("minigame." + "data" + ".spawn") && getColorMatch().isSet("minigame." + "data" + ".spectatorlobby")){
 				return true;
 			}
 		}
-		if(minigame == "DeadEnd") {
+		if(minigame.equals("DeadEnd")) {
 			if(getDeadEnd().isSet("minigame." + "data") && getDeadEnd().isSet("minigame." + "data" + ".lobby") && getDeadEnd().isSet("minigame." + "data" + ".spawn") && getDeadEnd().isSet("minigame." + "data" + ".spectatorlobby")){
 				return true;
 			}
 		}
-		if(minigame == "JumpnRun") {
+		if(minigame.equals("JumpnRun")) {
 			if(getJumpnRun().isSet("minigame." + "data") && getJumpnRun().isSet("minigame." + "data" + ".lobby") && getJumpnRun().isSet("minigame." + "data" + ".spawn") && getJumpnRun().isSet("minigame." + "data" + ".spectatorlobby")){
 				return true;
 			}
 		}
-		if(minigame == "LastArcherStanding") {
+		if(minigame.equals("LastArcherStanding")) {
 			if(getLastArcherStanding().isSet("minigame." + "data") && getLastArcherStanding().isSet("minigame." + "data" + ".lobby") && getLastArcherStanding().isSet("minigame." + "data" + ".spawn") && getLastArcherStanding().isSet("minigame." + "data" + ".spectatorlobby")){
 				return true;
 			}
 		}
-		if(minigame == "MineField") {
+		if(minigame.equals("MineField")) {
 			if(getMineField().isSet("minigame." + "data") && getMineField().isSet("minigame." + "data" + ".lobby") && getMineField().isSet("minigame." + "data" + ".spawn") && getMineField().isSet("minigame." + "data" + ".spectatorlobby")){
 				return true;
 			}
 		}
-		if(minigame == "RedAlert") {
+		if(minigame.equals("RedAlert")) {
 			if(getRedAlert().isSet("minigame." + "data") && getRedAlert().isSet("minigame." + "data" + ".lobby") && getRedAlert().isSet("minigame." + "data" + ".spawn") && getRedAlert().isSet("minigame." + "data" + ".spectatorlobby")){
 				return true;
 			}
 		}
-		if(minigame == "SheepFreenzy") {
+		if(minigame.equals("SheepFreenzy")) {
 			if(getSheepFreenzy().isSet("minigame." + "data") && getSheepFreenzy().isSet("minigame." + "data" + ".lobby") && getSheepFreenzy().isSet("minigame." + "data" + ".spawn") && getSheepFreenzy().isSet("minigame." + "data" + ".spectatorlobby")){
 				return true;
 			}
 		}
-		if(minigame == "SlapFight") {
+		if(minigame.equals("SlapFight")) {
 			if(getSlapFight().isSet("minigame." + "data") && getSlapFight().isSet("minigame." + "data" + ".lobby") && getSlapFight().isSet("minigame." + "data" + ".spawn") && getSlapFight().isSet("minigame." + "data" + ".spectatorlobby")){
 				return true;
 			}
 		}
-		if(minigame == "SmokeMonster") {
+		if(minigame.equals("SmokeMonster")) {
 			if(getSmokeMonster().isSet("minigame." + "data") && getSmokeMonster().isSet("minigame." + "data" + ".lobby") && getSmokeMonster().isSet("minigame." + "data" + ".spawn") && getSmokeMonster().isSet("minigame." + "data" + ".spectatorlobby")){
 				return true;
 			}
 		}
-		if(minigame == "Spleef") {
+		if(minigame.equals("Spleef")) {
 			if(getSpleef().isSet("minigame." + "data") && getSpleef().isSet("minigame." + "data" + ".lobby") && getSpleef().isSet("minigame." + "data" + ".spawn") && getSpleef().isSet("minigame." + "data" + ".spectatorlobby")){
 				return true;
 			}
