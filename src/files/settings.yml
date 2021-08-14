@@ -12,7 +12,7 @@ settings:
     max_players: 50
     announcements: true
     seconds_for_each_minigame: 60
-  rewards:
+    send_summary: true
     credits:
       enable: true
       use_economy: false

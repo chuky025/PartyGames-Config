@@ -2210,22 +2210,24 @@ public class Main extends JavaPlugin implements Listener {
 		List<String> description = m.getMessages().getStringList("messages.game.summary.minigame");
 		for(int i=0;i<description.size();i++) {
 			String message = description.get(i);
-			if(placeholderapi) {
-				p.sendMessage(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', message)
-						.replace("%place_1%", String.valueOf(place1))
-						.replace("%place_2%", String.valueOf(place2))
-						.replace("%place_3%", String.valueOf(place3))
-						.replace("%credits_earned%", Integer.valueOf(reward)+"")
-						.replace("%stars_earned%", "0")
-						.replace("%place_player%", your_place)));
-			} else {
-				p.sendMessage(ChatColor.translateAlternateColorCodes('&', message)
-						.replace("%place_1%", String.valueOf(place1))
-						.replace("%place_2%", String.valueOf(place2))
-						.replace("%place_3%", String.valueOf(place3))
-						.replace("%credits_earned%", Integer.valueOf(reward)+"")
-						.replace("%stars_earned%", "0")
-						.replace("%place_player%", your_place));
+			if(getSettings().getBoolean("settings.game.send_summary")) {
+				if(placeholderapi) {
+					p.sendMessage(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', message)
+							.replace("%place_1%", String.valueOf(place1))
+							.replace("%place_2%", String.valueOf(place2))
+							.replace("%place_3%", String.valueOf(place3))
+							.replace("%credits_earned%", Integer.valueOf(reward)+"")
+							.replace("%stars_earned%", "0")
+							.replace("%place_player%", Integer.valueOf(your_place)+"")));
+				} else {
+					p.sendMessage(ChatColor.translateAlternateColorCodes('&', message)
+							.replace("%place_1%", String.valueOf(place1))
+							.replace("%place_2%", String.valueOf(place2))
+							.replace("%place_3%", String.valueOf(place3))
+							.replace("%credits_earned%", Integer.valueOf(reward)+"")
+							.replace("%stars_earned%", "0")
+							.replace("%place_player%", your_place));
+				}
 			}
 		}
 	}
