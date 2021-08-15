@@ -62,7 +62,7 @@ public class OnMove implements Listener {
 								Location under = new Location(w, event.getPlayer().getLocation().getBlockX(), event.getPlayer().getLocation().getBlockY() - 1, event.getPlayer().getLocation().getBlockZ());
 								Location under2 = new Location(w, event.getPlayer().getLocation().getBlockX() - 1, event.getPlayer().getLocation().getBlockY() - 1, event.getPlayer().getLocation().getBlockZ() -1);
 								Location under3 = new Location(w, event.getPlayer().getLocation().getBlockX() + 1, event.getPlayer().getLocation().getBlockY() - 1, event.getPlayer().getLocation().getBlockZ() +1);
-								if(w.getBlockAt(under).getType() == Material.valueOf(main.getJumpnRun().getString("minigame.material.start_floor"))){
+								if(w.getBlockAt(under).getType() == Material.valueOf(main.getDeadEnd().getString("minigame.materials.game_floor"))){
 									
 									Bukkit.getScheduler().scheduleSyncDelayedTask(main, new Runnable(){
 										public void run(){

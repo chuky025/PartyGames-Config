@@ -90,7 +90,7 @@ public class OnInteractEvent implements Listener {
 			}
 		}else if(event.getAction().equals(Action.PHYSICAL)){
 			if(current.name.equalsIgnoreCase("MineField")) {
-				if(event.getClickedBlock().getType() == Material.valueOf(main.getMineField().getString("minigame.material.plates"))){
+				if(event.getClickedBlock().getType() == Material.valueOf(main.getMineField().getString("minigame.materials.plates"))){
 					if(main.players.contains(event.getPlayer().getName())){
 						final Player p = event.getPlayer();
 						if(main.getMineField().getBoolean("minigame.enable_particles")) {
