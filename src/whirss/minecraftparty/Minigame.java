@@ -66,16 +66,189 @@ public class Minigame {
 					Player p = Bukkit.getPlayerExact(p_);
 					if(p.isOnline()){
 						m.removeScoreboard(p);
-						m.getConfig().set("ag", name);
-						m.saveConfig();
-						m.reloadConfig();
 						//p.sendMessage(ChatColor.GREEN + "Starting in " + ChatColor.GOLD + Integer.toString(count));
 						
-						if(m.placeholderapi) {
-							p.sendTitle(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.countdown.title").replace("%count%", Integer.toString(count)).replace("%minigame%", name))),PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.after_countdown.subtitle").replace("%minigame%", name))), 0, 30, 0);
-						} else {
-							p.sendTitle(ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.countdown.title").replace("%count%", Integer.toString(count)).replace("%minigame%", name)),ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.after_countdown.subtitle").replace("%minigame%", name)), 0, 30, 0);
+						if(name.equals("ColorMatch")) {
+							m.getConfig().set("data.ag", m.getColorMatch().getString("minigame.displayname"));
+							m.saveConfig();
+							m.reloadConfig();
+							if(m.placeholderapi) {
+								p.sendTitle
+								(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.countdown.title")
+										.replace("%count%", Integer.toString(count)).replace("%minigame%", m.getColorMatch().getString("minigame.displayname")))),
+								PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.after_countdown.subtitle")
+										.replace("%minigame%", name))), 0, 30, 0);
+							} else {
+								p.sendTitle
+								(ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.countdown.title")
+										.replace("%count%", Integer.toString(count)).replace("%minigame%", m.getColorMatch().getString("minigame.displayname"))),
+								ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.after_countdown.subtitle")
+										.replace("%minigame%", name)), 0, 30, 0);
+							}
 						}
+						if(name.equals("DeadEnd")) {
+							m.getConfig().set("data.ag", m.getDeadEnd().getString("minigame.displayname"));
+							m.saveConfig();
+							m.reloadConfig();
+							if(m.placeholderapi) {
+								p.sendTitle
+								(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.countdown.title")
+										.replace("%count%", Integer.toString(count)).replace("%minigame%", m.getDeadEnd().getString("minigame.displayname")))),
+								PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.after_countdown.subtitle")
+										.replace("%minigame%", name))), 0, 30, 0);
+							} else {
+								p.sendTitle
+								(ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.countdown.title")
+										.replace("%count%", Integer.toString(count)).replace("%minigame%", m.getDeadEnd().getString("minigame.displayname"))),
+								ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.after_countdown.subtitle")
+										.replace("%minigame%", name)), 0, 30, 0);
+							}
+						}
+						if(name.equals("JumpnRun")) {
+							m.getConfig().set("data.ag", m.getJumpnRun().getString("minigame.displayname"));
+							m.saveConfig();
+							m.reloadConfig();
+							if(m.placeholderapi) {
+								p.sendTitle
+								(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.countdown.title")
+										.replace("%count%", Integer.toString(count)).replace("%minigame%", m.getJumpnRun().getString("minigame.displayname")))),
+								PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.after_countdown.subtitle")
+										.replace("%minigame%", name))), 0, 30, 0);
+							} else {
+								p.sendTitle
+								(ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.countdown.title")
+										.replace("%count%", Integer.toString(count)).replace("%minigame%", m.getJumpnRun().getString("minigame.displayname"))),
+								ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.after_countdown.subtitle")
+										.replace("%minigame%", name)), 0, 30, 0);
+							}
+						}
+						if(name.equals("LastArcherStanding")) {
+							m.getConfig().set("data.ag", m.getLastArcherStanding().getString("minigame.displayname"));
+							m.saveConfig();
+							m.reloadConfig();
+							if(m.placeholderapi) {
+								p.sendTitle
+								(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.countdown.title")
+										.replace("%count%", Integer.toString(count)).replace("%minigame%", m.getLastArcherStanding().getString("minigame.displayname")))),
+								PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.after_countdown.subtitle")
+										.replace("%minigame%", name))), 0, 30, 0);
+							} else {
+								p.sendTitle
+								(ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.countdown.title")
+										.replace("%count%", Integer.toString(count)).replace("%minigame%", m.getLastArcherStanding().getString("minigame.displayname"))),
+								ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.after_countdown.subtitle")
+										.replace("%minigame%", name)), 0, 30, 0);
+							}
+						}
+						if(name.equals("MineField")) {
+							m.getConfig().set("data.ag", m.getMineField().getString("minigame.displayname"));
+							m.saveConfig();
+							m.reloadConfig();
+							if(m.placeholderapi) {
+								p.sendTitle
+								(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.countdown.title")
+										.replace("%count%", Integer.toString(count)).replace("%minigame%", m.getMineField().getString("minigame.displayname")))),
+								PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.after_countdown.subtitle")
+										.replace("%minigame%", name))), 0, 30, 0);
+							} else {
+								p.sendTitle
+								(ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.countdown.title")
+										.replace("%count%", Integer.toString(count)).replace("%minigame%", m.getMineField().getString("minigame.displayname"))),
+								ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.after_countdown.subtitle")
+										.replace("%minigame%", name)), 0, 30, 0);
+							}
+						}
+						if(name.equals("RedAlert")) {
+							m.getConfig().set("data.ag", m.getRedAlert().getString("minigame.displayname"));
+							m.saveConfig();
+							m.reloadConfig();
+							if(m.placeholderapi) {
+								p.sendTitle
+								(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.countdown.title")
+										.replace("%count%", Integer.toString(count)).replace("%minigame%", m.getRedAlert().getString("minigame.displayname")))),
+								PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.after_countdown.subtitle")
+										.replace("%minigame%", name))), 0, 30, 0);
+							} else {
+								p.sendTitle
+								(ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.countdown.title")
+										.replace("%count%", Integer.toString(count)).replace("%minigame%", m.getRedAlert().getString("minigame.displayname"))),
+								ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.after_countdown.subtitle")
+										.replace("%minigame%", name)), 0, 30, 0);
+							}
+						}
+						if(name.equals("SheepFreenzy")) {
+							m.getConfig().set("data.ag", m.getSheepFreenzy().getString("minigame.displayname"));
+							m.saveConfig();
+							m.reloadConfig();
+							if(m.placeholderapi) {
+								p.sendTitle
+								(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.countdown.title")
+										.replace("%count%", Integer.toString(count)).replace("%minigame%", m.getSheepFreenzy().getString("minigame.displayname")))),
+								PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.after_countdown.subtitle")
+										.replace("%minigame%", name))), 0, 30, 0);
+							} else {
+								p.sendTitle
+								(ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.countdown.title")
+										.replace("%count%", Integer.toString(count)).replace("%minigame%", m.getSheepFreenzy().getString("minigame.displayname"))),
+								ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.after_countdown.subtitle")
+										.replace("%minigame%", name)), 0, 30, 0);
+							}
+						}
+						if(name.equals("SlapFight")) {
+							m.getConfig().set("data.ag", m.getSlapFight().getString("minigame.displayname"));
+							m.saveConfig();
+							m.reloadConfig();
+							if(m.placeholderapi) {
+								p.sendTitle
+								(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.countdown.title")
+										.replace("%count%", Integer.toString(count)).replace("%minigame%", m.getSlapFight().getString("minigame.displayname")))),
+								PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.after_countdown.subtitle")
+										.replace("%minigame%", name))), 0, 30, 0);
+							} else {
+								p.sendTitle
+								(ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.countdown.title")
+										.replace("%count%", Integer.toString(count)).replace("%minigame%", m.getSlapFight().getString("minigame.displayname"))),
+								ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.after_countdown.subtitle")
+										.replace("%minigame%", name)), 0, 30, 0);
+							}
+						}
+						if(name.equals("SmokeMonster")) {
+							m.getConfig().set("data.ag", m.getSmokeMonster().getString("minigame.displayname"));
+							m.saveConfig();
+							m.reloadConfig();
+							if(m.placeholderapi) {
+								p.sendTitle
+								(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.countdown.title")
+										.replace("%count%", Integer.toString(count)).replace("%minigame%", m.getSmokeMonster().getString("minigame.displayname")))),
+								PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.after_countdown.subtitle")
+										.replace("%minigame%", name))), 0, 30, 0);
+							} else {
+								p.sendTitle
+								(ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.countdown.title")
+										.replace("%count%", Integer.toString(count)).replace("%minigame%", m.getSmokeMonster().getString("minigame.displayname"))),
+								ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.after_countdown.subtitle")
+										.replace("%minigame%", name)), 0, 30, 0);
+							}
+						}
+						if(name.equals("Spleef")) {
+							m.getConfig().set("data.ag", m.getSpleef().getString("minigame.displayname"));
+							m.saveConfig();
+							m.reloadConfig();
+							if(m.placeholderapi) {
+								p.sendTitle
+								(PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.countdown.title")
+										.replace("%count%", Integer.toString(count)).replace("%minigame%", m.getSpleef().getString("minigame.displayname")))),
+								PlaceholderAPI.setPlaceholders(p, ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.after_countdown.subtitle")
+										.replace("%minigame%", name))), 0, 30, 0);
+							} else {
+								p.sendTitle
+								(ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.countdown.title")
+										.replace("%count%", Integer.toString(count)).replace("%minigame%", m.getSpleef().getString("minigame.displayname"))),
+								ChatColor.translateAlternateColorCodes('&', m.getTitles().getString("titles.after_countdown.subtitle")
+										.replace("%minigame%", name)), 0, 30, 0);
+							}
+						}
+						
 					}
 				}
 				count--;
@@ -214,9 +387,7 @@ public class Minigame {
 							p.sendMessage(ChatColor.translateAlternateColorCodes('&', message)
 									.replace("%displayname%", m.getSheepFreenzy().getString("minigame.displayname"))
 									.replace("%nl%", "\n"));
-						}p.sendMessage(ChatColor.translateAlternateColorCodes('&', message)
-								.replace("%displayname%", m.getSheepFreenzy().getString("minigame.displayname"))
-								.replace("%nl%", "\n"));
+						}
 					}
 					if(name.equals("SlapFight")) {
 						if(m.placeholderapi) {

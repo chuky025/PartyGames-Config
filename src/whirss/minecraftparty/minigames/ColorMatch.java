@@ -84,7 +84,7 @@ public class ColorMatch extends Minigame implements Listener{
 				}
 				
 				if(ints.size() > 15){
-					if(ints.get(ints.size() - 16) == colors.get(newcurrent).getWoolData()){
+					if(ints.get(ints.size() - 16) == colors.get(newcurrent).getDyeData()){
 						if(newcurrent > 0){
 							newcurrent -= 1;
 						}else{
@@ -94,7 +94,7 @@ public class ColorMatch extends Minigame implements Listener{
 				}
 				current = newcurrent;
 				
-				ints.add((int) colors.get(current).getWoolData());
+				ints.add((int) colors.get(current).getDyeData());
 				
 				for(int i_ = 0; i_ < 4; i_++){
 					for(int j_ = 0; j_ < 4; j_++){
@@ -102,7 +102,7 @@ public class ColorMatch extends Minigame implements Listener{
 						Block b_ = start.getWorld().getBlockAt(new Location(start.getWorld(), x_ + i_, y_, z_ + j_));
 						b_.setType(Material.valueOf(main.getColorMatch().getString("minigame.materials.finish_floor")));
 						b.setType(Material.valueOf(main.getColorMatch().getString("minigame.materials.game_floor")));
-						b.setData(colors.get(current).getWoolData());
+						b.setData(colors.get(current).getDyeData());
 					}
 				}
 			}
@@ -182,7 +182,7 @@ public class ColorMatch extends Minigame implements Listener{
 					}, (40L - n) / 12, (40L - n) / 12));
 
 					
-					ItemStack wool = new ItemStack(Material.valueOf(m.getColorMatch().getString("minigame.materials.game_floor")), 1, colors.get(currentw).getWoolData());
+					ItemStack wool = new ItemStack(Material.valueOf(m.getColorMatch().getString("minigame.materials.game_floor")), 1, colors.get(currentw).getDyeData());
 					//p.getInventory().all(wool);
 					for(int i = 0; i<9; i++){
 						p.getInventory().setItem(i, wool);
@@ -279,7 +279,7 @@ public class ColorMatch extends Minigame implements Listener{
 					//current = r.nextInt(colors.size());
 					current = ints.get(count);
 					if (current < 1) {
-						current = (int) colors.get(r.nextInt(colors.size())).getWoolData();
+						current = (int) colors.get(r.nextInt(colors.size())).getDyeData();
 					}
 					count += 1;
 					
@@ -325,7 +325,7 @@ public class ColorMatch extends Minigame implements Listener{
 							for(int j_ = 0; j_ < 4; j_++){
 								Block b = start.getWorld().getBlockAt(new Location(start.getWorld(), x_ + i_, y, z_ + j_));
 								b.setType(Material.valueOf(m.getColorMatch().getString("minigame.materials.game_floor")));
-								b.setData(colors.get(current).getWoolData());
+								b.setData(colors.get(current).getDyeData());
 							}
 						}
 					}
@@ -344,7 +344,7 @@ public class ColorMatch extends Minigame implements Listener{
 		int x = start.getBlockX() - 32;
 		int y = start.getBlockY() - 2;
 		int z = start.getBlockZ() - 32;
-		Byte data = colors.get(currentw).getWoolData();
+		Byte data = colors.get(currentw).getDyeData();
 		
 		for(int i = 0; i < 64; i++){
 			for(int j = 0; j < 64; j++){

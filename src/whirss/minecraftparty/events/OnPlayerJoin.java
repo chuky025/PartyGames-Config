@@ -26,9 +26,9 @@ public class OnPlayerJoin implements Listener {
 			Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "[MinecraftParty] Your configuration is outdated and will probably not work in this version of the plugin.");
 			Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "[MinecraftParty] Update your configuration or use an older version of the plugin.");
 			Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "[MinecraftParty] Tutorial to update the configuration: youtu.be/soon");
-			p.sendMessage(ChatColor.RED + "[MinecraftParty] Your configuration is outdated and will probably not work in this version of the plugin.");
-			p.sendMessage(ChatColor.RED + "[MinecraftParty] Update your configuration or use an older version of the plugin.");
-			p.sendMessage(ChatColor.RED + "[MinecraftParty] Tutorial to update the configuration: youtu.be/soon");
+			p.sendMessage(ChatColor.RED + "[MinecraftParty] Your configuration is outdated and will probably not work in this version of the plugin.\n"
+					+ "Update your configuration or use an older version of the plugin.\n"
+					+ "Tutorial to update the configuration: youtu.be/soon");
 		}
 		
 		// update credits from mysql

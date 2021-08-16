@@ -36,6 +36,7 @@ public class OnBlockBreak implements Listener {
 					event.setCancelled(true);
 				}	
 			}
+			event.setCancelled(true);
 		}
 	}
 

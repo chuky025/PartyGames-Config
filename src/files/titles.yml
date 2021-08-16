@@ -5,3 +5,6 @@ titles:
   after_countdown:
     title: '&a* &lGO! &a*'
     subtitle: '&a✪ &l%minigame% &a✪'
+  you_died:
+    title: '&c&lYOU DIED'
+    subtitle: 'Place: &a%player_place%'
