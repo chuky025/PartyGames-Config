@@ -17,7 +17,7 @@ messages:
     winner_broadcast: '&6%player% &awon this round and earned &b%credits% &aCredits!'
     stopped_game: '&cStopping minigame, because there are less players than required!
     (%min_players%)'
-    ingame_commands: '&3You are in MinecraftParty. Please use &6/mp leave &3to leave the
+    ingame_commands: '&3You are in PartyDeluxe. Please use &6/mp leave &3to leave the
     minigame.'
     your_credits: '&aYou have &6%credits% &aCredits.'
     player_credits: '&a%player% has &6%credits% &aCredits.'
@@ -41,7 +41,7 @@ messages:
       - '  &a#2nd place: &6%place_2%'
       - '  &a#3rd place: &6%place_3%'
       - ''
-      - '  &6⛁ &e+%credits_earned%  &7|  &6✯ &e+%stars_earned%  &7|  &aYour place: &6%place_player%'
+      - '  &6â›� &e+%credits_earned%  &7|  &6âœ¯ &e+%stars_earned%  &7|  &aYour place: &6%place_player%'
       - ''
       - '&8&m----------------------------------------------'
       final:

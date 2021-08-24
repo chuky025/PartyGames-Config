@@ -1,14 +1,14 @@
-name: MinecraftParty
-main: whirss.minecraftparty.Main
+name: PartyDeluxe
+main: whirss.partydeluxe.Main
 version: 1.8
 author: Whirss, InstanceLabs
 softdepend: [PlaceholderAPI, Vault]
 commands:
-   minecraftparty:
-      aliases: [mp, mcparty, mcp]
+   partydeluxe:
+      aliases: [pd, pg]
       description: Command for players
-      usage: /minecraftparty [action]
-   minecraftpartyadmin:
-      aliases: [mpadmin, mpa, mcpartyadmin]
+      usage: /partydeluxe [action]
+   partydeluxeadmin:
+      aliases: [pda, pga]
       description: Command for admins
-      usage: /minecraftpartyadmin [action]
+      usage: /partydeluxeadmin [action]
