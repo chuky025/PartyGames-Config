@@ -13,7 +13,7 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import me.clip.placeholderapi.PlaceholderAPI;
 import whirss.partydeluxe.Main;
 import whirss.partydeluxe.Minigame;
-import whirss.partydeluxe.nms.NMSEffectManager;
+import whirss.partydeluxe.nms.NMSManager;
 
 public class OnEntityDamage implements Listener {
 	
@@ -62,7 +62,7 @@ public class OnEntityDamage implements Listener {
 							if(!current.lost.contains(p)){
 								if(main.started && main.ingame_started){
 									current.lost.add(p);
-									NMSEffectManager.createBloodEffect(main, p.getLocation().add(0, 0.5, 0));
+									NMSManager.createBloodEffect(main, p.getLocation().add(0, 0.5, 0));
 									int count = 0;
 									for(String pl : main.players){
 										Player p_ = Bukkit.getPlayerExact(pl);

@@ -195,5 +195,9 @@ public enum NMSFunctions181 {
 		nmsStack.setTag(tag);
 		return CraftItemStack.asCraftMirror(nmsStack);
 	}
+	
+	public void sendStartingTitles() {
+		
+	}
 
 }

@@ -14,7 +14,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import whirss.partydeluxe.Main;
 import whirss.partydeluxe.Minigame;
 import whirss.partydeluxe.minigames.SmokeMonster;
-import whirss.partydeluxe.nms.NMSEffectManager;
+import whirss.partydeluxe.nms.NMSManager;
 
 public class OnMove implements Listener {
 	
@@ -68,14 +68,14 @@ public class OnMove implements Listener {
 										public void run(){
 											w.getBlockAt(under).setType(Material.AIR);
 											if(main.getDeadEnd().getBoolean("minigame.enable_particles")) {
-												NMSEffectManager.createSmokeNormalEffect(under);
+												NMSManager.createSmokeNormalEffect(under);
 											}
 											if(main.getDeadEnd().getBoolean("minigame.remove_several_blocks")) {
 												w.getBlockAt(under2).setType(Material.AIR);
 												w.getBlockAt(under3).setType(Material.AIR);
 												if(main.getDeadEnd().getBoolean("minigame.enable_particles")) {
-													NMSEffectManager.createSmokeNormalEffect(under2);
-													NMSEffectManager.createSmokeNormalEffect(under3);
+													NMSManager.createSmokeNormalEffect(under2);
+													NMSManager.createSmokeNormalEffect(under3);
 												}
 											}
 										}

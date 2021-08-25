@@ -177,7 +177,7 @@ public class PlayerCommand implements CommandExecutor {
 					}
 				}
 			}else{
-				p.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + "Minecraft" + ChatColor.LIGHT_PURPLE.toString() + ChatColor.BOLD + "Party " + ChatColor.GRAY + "- " + ChatColor.WHITE + "Help");
+				p.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD.toString() + "Party" + ChatColor.LIGHT_PURPLE.toString() + ChatColor.BOLD + "Deluxe " + ChatColor.GRAY + "- " + ChatColor.WHITE + "Help");
 		        p.sendMessage(ChatColor.GREEN + "/pd join " + ChatColor.WHITE + "Join a match");
 		        p.sendMessage(ChatColor.GREEN + "/pd leave " + ChatColor.WHITE + "Leave match");
 		        p.sendMessage(ChatColor.GREEN + "/pd stats [player] " + ChatColor.WHITE + "See a player statistics");

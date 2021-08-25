@@ -14,7 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import whirss.partydeluxe.Main;
 import whirss.partydeluxe.PluginUtil;
 
-public class NMSEffectManager {
+public class NMSManager {
 
 	public static void createParticles(Location l, int i, int j){
 		try{

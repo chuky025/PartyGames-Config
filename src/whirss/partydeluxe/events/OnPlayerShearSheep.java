@@ -8,7 +8,7 @@ import org.bukkit.event.player.PlayerShearEntityEvent;
 
 import whirss.partydeluxe.Main;
 import whirss.partydeluxe.Shop;
-import whirss.partydeluxe.nms.NMSEffectManager;
+import whirss.partydeluxe.nms.NMSManager;
 
 public class OnPlayerShearSheep implements Listener {
 	
@@ -39,7 +39,7 @@ public class OnPlayerShearSheep implements Listener {
 				main.currentscore.put(event.getPlayer().getName(), main.currentscore.get(event.getPlayer().getName()) + 1);
 			}
 			if(main.getSheepFreenzy().getBoolean("minigame.enable_particles")) {
-				NMSEffectManager.createSheepFreenzyEffect(event.getEntity().getLocation());	
+				NMSManager.createSheepFreenzyEffect(event.getEntity().getLocation());	
 			}
 			event.getEntity().remove();
 		}

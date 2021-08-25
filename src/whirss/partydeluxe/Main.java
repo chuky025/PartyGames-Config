@@ -43,6 +43,7 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
 import me.clip.placeholderapi.PlaceholderAPI;
+import whirss.partydeluxe.UpdateChecker.UpdateReason;
 import whirss.partydeluxe.commands.AdminCommand;
 import whirss.partydeluxe.commands.PlayerCommand;
 import whirss.partydeluxe.events.OnBlockBreak;
@@ -312,7 +313,24 @@ public class Main extends JavaPlugin implements Listener {
         }
 		
 		//Update Checker
-        if(update){
+		if(update) {
+			UpdateChecker.init(this, 12038).requestUpdateCheck().whenComplete((result, exception) -> {
+			    if (result.requiresUpdate()) {
+			        this.getLogger().info(String.format("An update is available! VeinMiner %s may be downloaded on SpigotMC", result.getNewestVersion()));
+			        return;
+			    }
+
+			    UpdateReason reason = result.getReason();
+			    if (reason == UpdateReason.UP_TO_DATE) {
+			        this.getLogger().info(String.format("Your version of VeinMiner (%s) is up to date!", result.getNewestVersion()));
+			    } else if (reason == UpdateReason.UNRELEASED_VERSION) {
+			        this.getLogger().info(String.format("Your version of VeinMiner (%s) is more recent than the one publicly available. Are you on a development build?", result.getNewestVersion()));
+			    } else {
+			        this.getLogger().warning("Could not check for a new version of VeinMiner. Reason: " + reason);
+			    }
+			});
+		}
+        /*if(update){
 		new UpdateChecker(this, 86837).getVersion(version -> {
             if (this.getDescription().getVersion().equalsIgnoreCase(version)) {
             	//Bukkit.getConsoleSender().sendMessage("There is not a new update available.");
@@ -321,7 +339,7 @@ public class Main extends JavaPlugin implements Listener {
             	Bukkit.getConsoleSender().sendMessage("[PartyDeluxe] Download it here: www.spigotmc.org/resources/86837/");
             }
         });
-       }
+       }*/
 	}
 	
 	private boolean setupEconomy() {

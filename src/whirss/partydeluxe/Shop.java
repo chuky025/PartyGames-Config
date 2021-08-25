@@ -11,7 +11,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 import whirss.partydeluxe.commands.AdminCommand;
 import whirss.partydeluxe.commands.PlayerCommand;
-import whirss.partydeluxe.nms.NMSEffectManager;
+import whirss.partydeluxe.nms.NMSManager;
 
 public class Shop {
 
@@ -140,7 +140,7 @@ public class Shop {
 		im.setDisplayName(name);
         item.setItemMeta(im);
         item.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 10);
-        return NMSEffectManager.fakeGlow(item);
+        return NMSManager.fakeGlow(item);
 	}
 	
 	

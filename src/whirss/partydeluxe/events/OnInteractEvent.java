@@ -17,7 +17,6 @@ import me.clip.placeholderapi.PlaceholderAPI;
 import whirss.partydeluxe.Main;
 import whirss.partydeluxe.Minigame;
 import whirss.partydeluxe.Shop;
-import whirss.partydeluxe.nms.NMSEffectManager;
 
 public class OnInteractEvent implements Listener {
 	

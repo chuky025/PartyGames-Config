@@ -13,7 +13,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 import whirss.partydeluxe.Main;
 import whirss.partydeluxe.Minigame;
-import whirss.partydeluxe.nms.NMSEffectManager;
+import whirss.partydeluxe.nms.NMSManager;
 
 public class RedAlert extends Minigame implements Listener{
 	
@@ -164,7 +164,7 @@ public class RedAlert extends Minigame implements Listener{
 			}else if(colorcode == 14){ // red
 				b.setType(Material.AIR);
 				if(m.getRedAlert().getBoolean("minigame.enable_particles")) {
-					NMSEffectManager.createFlameEffect(b.getLocation());	
+					NMSManager.createFlameEffect(b.getLocation());	
 				}
 			}else{
 				b.setData((byte)0);
